@@ -1,26 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Storm Farers Character Sheet</title>
+<title>Storm Farers Character Sheet v3</title>
 <style>
 :root{--ink:#202a32;--mute:#687780;--paper:#f5f3ed;--panel:#fffefa;--line:#d9ddd8;--acc:#315b63;--acc2:#e8efed;--bad:#9b4545;--ok:#2f7a4f;--in:#fff;--hd:#263b42;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media screen and (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e3ecf2;--mute:#92a5b3;--paper:#10181f;--panel:#18232d;--line:#2f4151;--acc:#6fc3cc;--acc2:#1b3a40;--bad:#e27a7d;--ok:#6fcb97;--in:#101a22;--hd:#0c1319}}
 :root[data-theme="dark"]{--ink:#e3ecf2;--mute:#92a5b3;--paper:#10181f;--panel:#18232d;--line:#2f4151;--acc:#6fc3cc;--acc2:#1b3a40;--bad:#e27a7d;--ok:#6fcb97;--in:#101a22;--hd:#0c1319}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
-header{background:var(--hd);color:#f8f7f1;padding:20px max(16px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+header{background:var(--hd);color:#f8f7f1;padding:20px max(16px,calc((100% - 1440px)/2));display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
 header h1{font:600 25px/1.1 Georgia,serif;margin:0 0 4px}header p{margin:0;color:#c8d4d2;font-size:13px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}#saveStatus{font-size:12px;color:#c8d4d2}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}#saveStatus{font-size:12px;color:#ffe0a8;max-width:360px;line-height:1.3}
 button{border:1px solid var(--acc);background:var(--acc2);color:var(--ink);padding:7px 11px;border-radius:7px;font:600 13px system-ui;cursor:pointer;min-height:34px}
 button:hover:not(:disabled){background:var(--acc);color:var(--panel)}button:disabled{opacity:.45;cursor:default}
 button.ghost{background:none;border-color:var(--line)}header button{background:#f8f7f1;color:#263b42;border-color:#aab9b6}
-main{max-width:1100px;margin:20px auto;padding:0 16px 50px}
-.grid{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;align-items:start}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px}
+main{max-width:1440px;margin:20px auto;padding:0 16px 50px}
+.grid{display:block}.band{display:flex;gap:16px;align-items:flex-start}.col{flex:1;min-width:0}.wide2 .wb-in{display:grid;grid-template-columns:1fr 1fr;gap:28px}.wide2 .wb-l>h3:first-child,.wide2 .wb-r>h3:first-child{margin-top:0}main>.guide{margin:0 0 16px;background:var(--acc2);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 14px;font-size:14px}.guide summary{cursor:pointer}.guide ol{margin:8px 0 0;padding-left:20px}.guide li{margin:4px 0}@media print{.guide{display:none}}.jumpbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:10px;align-items:center;padding:8px max(16px,calc((100% - 1440px)/2));background:var(--panel);border-bottom:1px solid var(--line)}.jumpbar label{font-size:13px;font-weight:700;color:var(--mute)}.jumpbar select{width:auto;min-width:220px;max-width:100%}.panel,#io{scroll-margin-top:72px}@media print{.jumpbar{display:none}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px;break-inside:avoid;margin-bottom:16px}
 .panel h2{font:600 18px Georgia,serif;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .panel h3{font-size:12px;color:var(--mute);margin:14px 0 7px;font-weight:700}
-.full{grid-column:1/-1}
+.full{column-span:all}
 .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .field{display:flex;flex-direction:column;gap:3px;min-width:0}.field.wide{grid-column:1/-1}
 label,.lab{font-size:12px;color:var(--mute);font-weight:700}
@@ -44,16 +43,17 @@ td{padding:4px;border-top:1px solid var(--line);vertical-align:middle}td:first-c
 .warnbox{margin-top:12px;font-size:13px;border-left:3px solid var(--bad);padding-left:9px}
 .banner{background:var(--bad);color:#fff;padding:8px 12px;border-radius:6px;margin:8px 0}.banner button{margin-left:6px}
 details{margin-top:12px;border:1px solid var(--line);border-radius:8px;padding:8px 12px}summary{cursor:pointer;font-weight:700;font-size:14px}
-.res{font:700 24px Georgia,serif}.pill.on{background:var(--bad);color:#fff;border-color:var(--bad)}.pill.off{opacity:.5}main>.warnbox{margin:0 0 16px;background:var(--panel);border:1px solid var(--bad);border-left-width:5px;border-radius:8px;padding:10px 14px;font-size:14px}.panel h2::after{order:2}.panel h2.flag::before{content:"*";color:var(--bad);font-size:24px;line-height:1;font-weight:700;order:1;margin-right:auto;margin-left:6px}.panel h2{cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}.panel h2::after{content:"\25BE";font-size:14px;color:var(--mute)}.panel h2[aria-expanded=false]{margin-bottom:0;border-bottom:0;padding-bottom:0}.panel h2[aria-expanded=false]::after{transform:rotate(-90deg)}input[type=radio]{width:18px;height:18px;min-height:0;accent-color:var(--acc);padding:0}.sq{width:22px;height:22px;border:2px solid var(--ink);border-radius:3px;display:inline-block;vertical-align:middle}.sq.on{background:var(--ink)}.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}.ov[hidden]{display:none}.modal{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;max-width:480px;width:100%;max-height:90vh;overflow:auto}.modal h2{font:600 18px Georgia,serif;margin:0 0 10px}.eqr{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:4px 0}.eqr b{width:84px;font-size:13px}.eqr input{min-width:120px}.trow{display:grid;grid-template-columns:1fr 1fr 30px;gap:5px;margin-bottom:6px}.frow{border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px}.frow textarea{margin-top:6px}
+.res{font:700 24px Georgia,serif}.pill.on{background:var(--bad);color:#fff;border-color:var(--bad)}.pill.off{opacity:.5}main>.warnbox{margin:0 0 16px;background:var(--panel);border:1px solid var(--bad);border-left-width:5px;border-radius:8px;padding:10px 14px;font-size:14px}.panel h2::after{order:2}.panel h2.flag::before{content:"*";color:var(--bad);font-size:24px;line-height:1;font-weight:700;order:1;margin-right:auto;margin-left:6px}.panel h2{cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}.panel h2::after{content:"\25BE";font-size:14px;color:var(--mute)}.panel h2[aria-expanded=false]{margin-bottom:0;border-bottom:0;padding-bottom:0}.panel h2[aria-expanded=false]::after{transform:rotate(-90deg)}input[type=radio]{width:18px;height:18px;min-height:0;accent-color:var(--acc);padding:0}.sq{width:22px;height:22px;border:2px solid var(--ink);border-radius:3px;display:inline-block;vertical-align:middle}.sq.on{background:var(--ink)}.sq.circ{border-radius:50%;box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--bad)}.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}.ov[hidden]{display:none}.modal{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;max-width:480px;width:100%;max-height:90vh;overflow:auto}.modal h2{font:600 18px Georgia,serif;margin:0 0 10px}.eqr{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:4px 0}.eqr b{width:84px;font-size:13px}.eqr input{min-width:120px}.trow{display:grid;grid-template-columns:1fr 1fr 30px;gap:5px;margin-bottom:6px}.frow{border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px}.frow textarea{margin-top:6px}
 ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:auto}
 .ref{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ref ul{padding-left:18px;margin:4px 0;font-size:13px}
 .inv td{padding:3px}.inv input{border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}.inv .q{max-width:70px}
 @media(max-width:760px){.grid,.ref{grid-template-columns:1fr}.full{grid-column:auto}}
-@media print{.acc[hidden]{display:block!important}:root{--ink:#111;--paper:#fff;--panel:#fff;--line:#aaa;--in:#fff;--mute:#444;--hd:#fff}header{color:#111;border-bottom:2px solid #333}header p,.actions,details,button,.warnbox,.rollp{display:none!important}.panel{break-inside:avoid;padding:10px}main{margin:8px auto}}
+@media print{.grid{columns:1}.acc[hidden]{display:block!important}:root{--ink:#111;--paper:#fff;--panel:#fff;--line:#aaa;--in:#fff;--mute:#444;--hd:#fff}header{color:#111;border-bottom:2px solid #333}header p,header .actions,header .actions *,#saveStatus,.actions,details,button,.warnbox,.rollp{display:none!important}.panel{break-inside:avoid;padding:10px}main{margin:8px auto}}
 </style></head><body>
 <header><div><h1>Storm Farers of Estaron</h1><p>A Game of Heroic Survival: Character Sheet</p></div>
-<div class="actions"><span id="saveStatus">Autosaves in this browser</span><button onclick="try{print()}catch(e){}">Print</button><button onclick="openIO()">Export / Import</button><button onclick="clearAll()">New hero</button></div></header>
-<main><div class="warnbox" id="warn" role="status"></div><div class="grid">
+<div class="actions"><span id="saveStatus">Autosave can be lost. Export any character sheet you want to keep.</span><button onclick="try{print()}catch(e){}">Print</button><button onclick="exportJ()">Export / Import</button><button onclick="openMail()">Email</button><button onclick="clearAll()">New hero</button></div></header>
+<nav class="jumpbar" aria-label="Jump to a section"><label for="jsel">Jump to</label><select id="jsel" onchange="jumpTo(this.value)"><option value="">Choose a section…</option></select></nav>
+<main><div class="warnbox" id="warn" role="status"></div><div class="guide" id="guide"><details open><summary><b>Character creation steps</b> (shown at level 0 only)</summary><ol><li><b>Caliber:</b> ask your GL which Caliber die to use (d10 is recommended for general groups).</li><li><b>Allocation:</b> pick a Starting Allocation under Attributes, then set each rating (the set can go to the Attributes in any order). <span id="gnote"></span></li><li><b>Title:</b> write a Background Title: an identity (role, profession, livelihood) and a bond (place, group, major event). Your GL must approve it, and you can settle it by level 2 if you have no concept yet.</li><li><b>Race:</b> add your race and its features under Identity &amp; Progression.</li><li><b>Qualities:</b> if your allocation gave +3 Quality points, spend them under Qualities (ranks 1 to 3 cost 1 each).</li><li><b>Gear:</b> add the common tools of your Title’s trade to Inventory &amp; Supplies, and your weapons and armor under Combat.</li><li><b>Ready:</b> you start with 5 Hearts and clear Needs. Earn 4 XP to reach level 1, then choose your first class and a Fundamental Feature.</li></ol></details></div><div class="grid">
 
 <section class="panel"><h2>Identity &amp; Progression</h2>
 <div class="fields">
@@ -78,9 +78,9 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <div class="field"><label for="cal">Caliber Die</label><select id="cal" data-k="cal" data-n="1"><option value="4">d4</option><option value="6">d6</option><option value="8">d8</option><option value="10">d10 (recommended)</option><option value="12">d12</option></select></div>
 <div class="field"><label for="alloc">Starting Allocation</label><select id="alloc" data-k="alloc"><option>Generalist</option><option>Adventurer</option><option>Specialist</option><option>Prodigy</option><option>Survivor</option></select></div></div>
 <p class="note" id="anote" style="margin:0 0 8px"></p>
-<table class="attr"><thead><tr><th>Attribute</th><th>Rating</th><th>Die</th></tr></thead><tbody id="attrs"></tbody></table>
-<div class="row"><span class="pill">Injury Cap <b id="cap"></b></span><span class="pill">Passive defense: 7 (10 with background) + Quality</span></div>
-<p class="note">Rating 0 to 4 gives d4 to d12. Choosing an allocation fills in ratings, and you can still edit them.</p></section>
+<table class="attr"><thead><tr><th>Attribute</th><th>Rating</th><th>Die</th><th>Passive</th></tr></thead><tbody id="attrs"></tbody></table>
+<div class="row"><span class="pill">Injury Cap <b id="cap"></b></span><span class="pill">Passive = Base (die size) + best of: Background (+3) OR Quality OR Talent</span></div>
+<p class="note">Rating 0 to 4 gives d4 to d12. A Passive Value equals the die size (d6 = 6, d10 = 10). Choosing an allocation fills in ratings, and you can still edit them.</p></section>
 
 <section class="panel"><h2>Qualities</h2>
 <p class="note" style="margin:-4px 0 10px">Rename, add or remove freely. One Quality applies per roll.</p>
@@ -88,27 +88,29 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <div class="row"><span class="pill" id="pts"></span></div>
 <p class="note">Ranks 1 to 3 cost 1 each, 4 and 5 cost 2, rank 6 costs 3. Unspent points can’t be saved.</p></section>
 
-<section class="panel"><h2>Talents</h2><p class="note" style="margin:-4px 0 10px">Talents and their upgrades come from Class features. One Talent can add its value to a Check at a time.</p><div id="talents"></div><button class="ghost" onclick="S.talents.push({n:'',r:0});rta();save()">+ Add Talent</button></section>
 <section class="panel"><h2>Classes &amp; Features</h2><div id="classes"></div><button class="ghost" style="margin-top:8px" onclick="S.classes.push({n:'',f:[]});rc();save()">+ Add Class</button></section>
-<section class="panel"><h2>Well-being</h2>
+<section class="panel"><h2>Talents</h2><p class="note" style="margin:-4px 0 10px">Talents and their upgrades come from Class features. One Talent can add its value to a Check at a time. Search is the default for actively looking for something, but if another Talent is clearly closely related you may roll Perception with that Talent instead.</p><div id="talents"></div><button class="ghost" onclick="openTal()">+ Add Talent</button></section>
+<section class="panel wb" data-wide="1"><h2>Well-being</h2>
 
 
 
 
-<h3>Needs</h3><div id="needs"></div><div class="row"><button onclick="openNeed('mark')">Mark a Need</button><button class="ghost" onclick="openNeed('clear')">Clear a Need</button></div>
-<div class="field" style="margin-top:8px"><label for="dnote">Long-term Distress / Notes</label><input id="dnote" data-k="dnote" placeholder="Record any circled, long-term Need"></div>
-<h3>Strain</h3>
+<div class="wb-in"><div class="wb-l"><h3>Needs</h3><div id="needs"></div><div class="row"><button onclick="openNeed('mark')">Mark a Need</button><button class="ghost" onclick="openNeed('clear')">Clear a Need</button></div>
+<p class="note" style="margin:4px 0 0">A circled box is unrecoverable. Note how to fix it in Recovery / Medical Notes.</p>
+</div><div class="wb-r"><h3>Strain</h3>
 <div class="row" id="strainv" aria-live="polite"></div>
-<p class="note">Muddled: Problem on Intelligence and Influence. Hampered: Problem on Athleticism and Resilience. Worn doubles them.</p>
+<p class="note">Muddled: Problem on Intelligence and Influence. Hampered: Problem on Athleticism and Resilience. Worn doubles them.</p><p class="note">Strain may come from cascading Needs, illness, exposure to adverse weather, and similar hardships. Use Gain Strain when it applies.</p>
 <div class="row"><button onclick="openStrain('gain')">Gain Strain</button><button class="ghost" onclick="openStrain('clear')">Remove Strain</button></div>
 <div class="row"><label class="chk"><input type="checkbox" data-k="kdf"> Knocked Down</label><label class="chk"><input type="checkbox" data-k="dying"> Dying</label></div>
 <div class="field"><label for="rec">Recovery / Medical Notes</label><textarea id="rec" data-k="rec"></textarea></div>
-<div class="row"><button onclick="openDawn()">Dawn: start a new day</button></div></section><div id="dm_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="dtl"><h2 id="dtl">Dawn: look back at the day</h2><div id="dstep1">
+<div class="row"><button onclick="openDawn()">Dawn: start a new day</button></div></div></div></section><div id="dm_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="dtl"><h2 id="dtl">Dawn: look back at the day</h2><div id="dstep1">
 <div class="fields" style="margin-top:8px"><div class="field"><label for="dm">Meals eaten</label><input id="dm" type="number" min="0" placeholder="required"></div><div class="field"><label for="dr">Phases rested</label><input id="dr" type="number" min="0" placeholder="required"></div><div class="field"><label for="dp">Phases under pressure</label><input id="dp" type="number" min="0" value="0"></div><div class="field wide" id="dsw"><label for="ds">You have Strain. Use heals to clear it instead of healing Hearts?</label><select id="ds"><option value="0">No, heal Hearts</option><option value="1">Yes, use 1 heal</option><option value="2">Yes, use 2 heals</option></select></div></div>
 <div class="row"><label class="chk"><input type="checkbox" id="dc"> Sheltered, safe, cozy</label><label class="chk"><input type="checkbox" id="dl"> Spent a Phase lifting spirits</label></div>
 <p class="warn" id="derr"></p><div class="row"><button class="ghost" onclick="closeDawn()">Cancel</button><button onclick="reviewDawn()">Review</button></div></div><div id="dstep2" hidden><div id="dsum"></div><div class="row"><button class="ghost" onclick="$('dstep2').hidden=true;$('dstep1').hidden=false">Back</button><button id="dcf" onclick="confirmDawn()">Confirm Dawn</button></div></div></div></div>
 
-<div id="ht_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="htl"><h2 id="htl">Take damage</h2><p id="hin" style="margin-top:0"></p><div class="lab">Which protection applies?</div><div class="row" id="hty"></div><div class="lab">How does it count this time?</div><div class="row" id="hhw"></div><p id="hres" class="res" style="font-size:18px"></p><div class="row"><button class="ghost" onclick="closeHit()">Cancel</button><button onclick="confirmHit()">Apply damage</button></div></div></div>
+<div id="tl_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="tlt"><h2 id="tlt">Add a Talent</h2><p class="note" style="margin-top:0">Pick a default Talent or type a custom one. A new Talent starts at value 1, and you can change it.</p><div id="tlist"></div><div class="field" style="margin-top:10px"><label for="tcu">Custom or more specific Talent (for example Navigate (Highlands))</label><div class="row"><input id="tcu" style="flex:1"><button onclick="addTal($('tcu').value)">Add</button></div></div><p class="note" id="tmsg" aria-live="polite"></p><div class="row"><button class="ghost" onclick="closeTal()">Done</button></div></div></div>
+<div id="ml_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtl"><h2 id="mtl">Email this character</h2><p class="note" style="margin-top:0">Opens your email app with a text summary of the character, followed by the Character Sheet Code for importing. Leave the address blank to choose it in your email app.</p><div class="field"><label for="mto">Send to (optional)</label><input id="mto" type="email" placeholder="name@example.com"></div><p class="note" id="mnote"></p><div class="row"><button class="ghost" onclick="closeMail()">Cancel</button><button onclick="sendMail()">Open email</button></div></div></div>
+<div id="ht_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="htl"><h2 id="htl">Take damage</h2><p id="hin" style="margin-top:0"></p><div class="lab">Which protection applies?</div><div class="row" id="hty"></div><div class="lab">How does it count this time?</div><div class="row" id="hhw"></div><label class="chk" style="margin:6px 0"><input type="checkbox" id="hvu" onchange="H.v=this.checked;hitRender()"> Vulnerable (take double damage)</label><p id="hres" class="res" style="font-size:18px"></p><div class="row"><button class="ghost" onclick="closeHit()">Cancel</button><button onclick="confirmHit()">Apply damage</button></div></div></div>
 <div id="sm_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="stl"><h2 id="stl"></h2><p class="note" id="stx" style="margin-top:0"></p><div class="row" id="sbtn"></div><div class="row"><button class="ghost" onclick="closeStrain()">Cancel</button></div></div></div>
 <section class="panel full"><h2>Combat</h2><h3 style="margin-top:0">Hearts</h3><div class="hearts" id="hearts"></div><div class="row"><label for="dmg">Total damage</label><input id="dmg" type="number" min="0" data-k="dmg"><label for="amt">Incoming damage</label><input id="amt" type="number" min="1" value="1"><button onclick="openHit()">Take damage</button><button onclick="healHearts(1)">Heal a Heart</button></div><p class="note" id="hnote"></p><div class="banner" id="kd" hidden>Knocked Down. <button onclick="wakeRoll(0)">Roll 1d4 to wake</button> <button onclick="wakeRoll(1)">Roll 1d4 to Get Up</button> <b id="wk"></b> Further damage means Dying.</div><h3>Quickened &amp; Slowed</h3><div class="row"><label for="qk">Quickened</label><input id="qk" type="number" min="0" data-k="quick"><label for="sl">Slowed</label><input id="sl" type="number" min="0" data-k="slow"><span class="pill" id="qsn"></span></div><p class="note">They cancel one-for-one. Triumph in combat grants Quickened, Fumble grants Slowed.</p><h3>Equipment</h3><div id="eqb"></div><div class="fields" style="margin-top:8px">
 
@@ -127,8 +129,8 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <div class="field"><label for="rh">Help</label><input id="rh" type="number" min="0" data-k="roll.help"></div>
 <div class="field"><label for="rp">Problem</label><input id="rp" type="number" min="0" data-k="roll.prob"></div>
 <div class="field"><label for="ru">Untrained</label><select id="ru" data-k="roll.untr" data-n="1"><option value="0">no</option><option value="1">−1 common task</option><option value="3">−3 unusual task</option></select></div>
-<div class="field"><label class="chk"><input type="checkbox" data-k="roll.adv"> Advantage</label></div>
-<div class="field"><label class="chk"><input type="checkbox" data-k="roll.dis"> Disadvantage</label></div></div>
+<div class="field"><label class="chk"><input type="checkbox" data-k="roll.adv"> Advantage</label><label class="chk" style="margin-top:6px"><input type="checkbox" data-k="roll.dis"> Disadvantage</label></div>
+</div>
 <div class="row"><button onclick="roll()">Roll</button><span class="note" id="rnote"></span></div><div id="rollOut"></div></section>
 
 <section class="panel"><h2>Notes &amp; Log</h2>
@@ -137,17 +139,16 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 
 <details class="full" id="io"><summary>Export / Import</summary>
 <p class="note">Export fills the box with your character. Paste saved text here and press Import to load it.</p>
-<div class="row"><button onclick="$('iot').value=JSON.stringify(S,null,1)">Export</button><button onclick="importJ()">Import</button></div>
+<div class="row"><button onclick="exportJ()">Export</button><button onclick="importJ()">Import</button></div>
 <textarea id="iot" style="min-height:120px" aria-label="Character data"></textarea></details>
 </div></main>
 <script>
 const $=id=>document.getElementById(id),DIE=[4,6,8,10,12],ATT=[["ath","Athleticism"],["res","Resilience"],["int","Intelligence"],["inf","Influence"]];
 const AL={Generalist:{r:[2,2,2,2],t:1,note:"Bonus: an additional Background Title."},Adventurer:{r:[3,2,2,1],t:1,note:"Bonus: an additional Background Title."},Specialist:{r:[3,3,1,0],q:3,note:"Bonus: +3 Quality points."},Prodigy:{r:[4,3,0,0],q:3,note:"Bonus: +3 Quality points."},Survivor:{r:[3,2,1,1],cap:3,note:"Bonus: +3 Injury Cap."}};
-const NEEDS=[["hun","Hungry"],["tir","Tired"],["dis","Distressed"]],QN=["Strength","Agility","Spirit","Vitality","Reason","Creativity","Perception","Connection","Appeal","Presence"],KEY="stormfarers-sheet-v3";
-const blank=()=>({name:"",player:"",races:[],lvl:0,xp:0,cal:10,alloc:"Generalist",r:{ath:2,res:2,int:2,inf:2},q:QN.map(n=>({n,r:0})),wake:"",titles:[{i:"",b:""}],classes:[],talents:[],contacts:[],collapsed:{},dmg:0,needs:{hun:0,tir:0,dis:0},dnote:"",strain:{mud:false,ham:false,worn:false},kdf:false,dying:false,rec:"",eq:{mh:{n:"",dmg:"",prot:"",tr:""},oh:{n:"",dmg:"",prot:"",tr:""},ar:{n:"",dmg:"",prot:"",part:"",tr:""},sh:{n:"",dmg:"",prot:"",tr:""}},gn:"",inv:[{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""}],quick:0,slow:0,notes:"",log:[],last:"",roll:{att:"ath",q:"",t:"",dn:10,help:0,prob:0,untr:0,adv:false,dis:false}});
+const NEEDS=[["hun","Hungry","Fewer than 2 meals in a day (checked at Dawn); 3+ Phases without a drink (2 in extreme heat).","3 or more meals and enough to drink."],["tir","Tired","Rested fewer than 2 Phases (checked at Dawn); Fumble a Check that took lots of stamina.","Rested 4 Phases, or 2 if sheltered, safe and cozy."],["dis","Distressed","2 Phases under sustained pressure, duress, sorrow, fear or filth; Miss a Resilience Check against horror, despair, betrayal or deep disgust.","A Phase doing something that lifts your spirits: friends, celebrating, helping, meditating."]],QN=["Strength","Agility","Spirit","Vitality","Reason","Creativity","Perception","Connection","Appeal","Presence"],KEY="stormfarers-sheet-v3";
+const blank=()=>({name:"",player:"",races:[],lvl:0,xp:0,cal:10,alloc:"Generalist",r:{ath:2,res:2,int:2,inf:2},q:QN.map(n=>({n,r:0})),wake:"",titles:[{i:"",b:""}],classes:[],talents:[],contacts:[],collapsed:{},dmg:0,needs:{hun:0,tir:0,dis:0},circ:{hun:0,tir:0,dis:0},strain:{mud:false,ham:false,worn:false},kdf:false,dying:false,rec:"",eq:{mh:{n:"",dmg:"",prot:"",tr:""},oh:{n:"",dmg:"",prot:"",tr:""},ar:{n:"",dmg:"",prot:"",part:"",tr:""},sh:{n:"",dmg:"",prot:"",tr:""}},gn:"",inv:[{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""}],quick:0,slow:0,notes:"",log:[],last:"",roll:{att:"ath",q:"",t:"",dn:10,help:0,prob:0,untr:0,adv:false,dis:false}});
 let S=blank();try{const t=localStorage.getItem(KEY);if(t)S=Object.assign(blank(),JSON.parse(t))}catch(e){}
 function norm(){if(!Array.isArray(S.q))S.q=Object.entries(S.q).map(([n,r])=>({n,r}));
- S.q.forEach(q=>{if(q.n==="Power")q.n="Strength"});if(S.roll&&S.roll.q==="Power")S.roll.q="Strength";
  if(S.idn||S.bond||S.idn2||S.bond2){S.titles=[{i:S.idn||"",b:S.bond||""}];if(S.idn2||S.bond2)S.titles.push({i:S.idn2||"",b:S.bond2||""})}
  if(typeof S.features==="string"&&S.features)S.feats=[{n:"",t:S.features}];
  if(Array.isArray(S.feats)||S.cls){const f=(S.feats||[]).filter(x=>x.n||x.t);if(f.length||S.cls)S.classes=[{n:S.cls||"",f}]}
@@ -163,35 +164,37 @@ const cap=()=>4+S.r.res+(A().cap||0),lost=()=>Math.min(5,Math.floor(S.dmg/cap())
 const cost=k=>k<=3?1:k<=5?2:3,spent=()=>S.q.reduce((a,q)=>{let s=0;for(let k=1;k<=q.r;k++)s+=cost(k);return a+s},0);
 const earned=()=>(A().q||0)+(S.lvl>=2?3*(Math.floor((S.lvl-2)/3)+1):0),need=()=>1+3*(S.lvl+1);
 const strainP=a=>{const m=S.strain.worn?2:1;return(a==="ath"||a==="res")?(S.strain.ham?m:0):(S.strain.mud?m:0)};
-let tmr;function save(){clearTimeout(tmr);tmr=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));$("saveStatus").textContent="Saved in this browser"}catch(e){$("saveStatus").textContent="Autosave unavailable"}},200)}
+let tmr;function save(){clearTimeout(tmr);tmr=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){$("saveStatus").textContent="Autosave is unavailable here. Export any character sheet you want to keep."}},200)}
 function change(){derive();save()}
 function sync(){if(PREV)return;document.querySelectorAll("[data-k]").forEach(el=>{const v=gp(el.dataset.k);if(el.type==="checkbox")el.checked=!!v;else el.value=v});rq();rta();rt();rr();rc();rk();ri();re();derive();acc();save()}
 function applyAlloc(){const r=A().r;if(r)ATT.forEach((a,i)=>S.r[a[0]]=r[i]);ATT.forEach(a=>$("r_"+a[0]).value=S.r[a[0]])}
 function rq(){$("quals").innerHTML=S.q.map((q,i)=>`<div class="qrow"><input value="${esc(q.n)}" placeholder="Quality" aria-label="Quality name" oninput="S.q[${i}].n=this.value;change()"><input type="number" min="0" max="6" value="${q.r}" aria-label="Rank" oninput="S.q[${i}].r=Math.max(0,Math.min(6,+this.value||0));change()"><button class="x" aria-label="Remove Quality" onclick="S.q.splice(${i},1);rq();change()">×</button></div>`).join("")}
 function ri(){$("inv").innerHTML=S.inv.map((x,i)=>`<tr><td><input value="${esc(x.n)}" placeholder="Item" oninput="S.inv[${i}].n=this.value;save()"></td><td><input class="q" value="${esc(x.q)}" placeholder="Qty" oninput="S.inv[${i}].q=this.value;save()"></td><td><input value="${esc(x.t)}" placeholder="Notes or traits" oninput="S.inv[${i}].t=this.value;save()"></td><td><button class="x" aria-label="Remove item" onclick="S.inv.splice(${i},1);ri();save()">×</button></td></tr>`).join("")}
-function rt(){$("titles").innerHTML=S.titles.map((t,i)=>`<div class="trow"><input value="${esc(t.i)}" placeholder="Identity (Shipwright)" aria-label="Title identity" oninput="S.titles[${i}].i=this.value;change()"><input value="${esc(t.b)}" placeholder="Bond (of the harbor guild)" aria-label="Title bond" oninput="S.titles[${i}].b=this.value;change()"><button class="x" aria-label="Remove Title" onclick="S.titles.splice(${i},1);rt();change()">×</button></div>`).join("")}
+function rt(){$("titles").innerHTML=S.titles.map((t,i)=>`<div class="trow"><input value="${esc(t.i)}" placeholder="Identity (role, profession, livelihood)" aria-label="Title identity" oninput="S.titles[${i}].i=this.value;change()"><input value="${esc(t.b)}" placeholder="Bond (place, group, major event)" aria-label="Title bond" oninput="S.titles[${i}].b=this.value;change()"><button class="x" aria-label="Remove Title" onclick="S.titles.splice(${i},1);rt();change()">×</button></div>`).join("")}
 function rl(k,el,ph,fp,empty,fn){$(el).innerHTML=S[k].length?S[k].map((c,i)=>`<div class="frow"><div class="trow" style="grid-template-columns:1fr 30px"><input value="${esc(c.n)}" placeholder="${ph}" aria-label="${ph}" oninput="S.${k}[${i}].n=this.value;save()"><button class="x" aria-label="Remove ${ph}" onclick="ask('Remove this?','This also removes all of its features.','Remove',()=>{S.${k}.splice(${i},1);${fn}();save()})">×</button></div>${c.f.map((f,j)=>`<div class="frow" style="margin:6px 0 0"><div class="trow" style="grid-template-columns:1fr 30px"><input value="${esc(f.n)}" placeholder="${fp}" aria-label="Feature name" oninput="S.${k}[${i}].f[${j}].n=this.value;save()"><button class="x" aria-label="Remove feature" onclick="S.${k}[${i}].f.splice(${j},1);${fn}();save()">×</button></div><textarea placeholder="Effect, requirements" aria-label="Feature details" oninput="S.${k}[${i}].f[${j}].t=this.value;save()">${esc(f.t)}</textarea></div>`).join("")}<button class="ghost" style="margin-top:8px" onclick="S.${k}[${i}].f.push({n:'',t:''});${fn}();save()">+ Add Feature</button></div>`).join(""):`<p class="note">${empty}</p>`}
 function rc(){rl("classes","classes","Class name","Feature or talent name","No class yet. Add one when you reach level 1.","rc")}
 function rr(){rl("races","races","Race name","Racial feature name","No race yet. Add one, and add more for a hybrid.","rr")}
 function re(){const f=(k,t,fl)=>`<div class="eqr"><b>${t}</b>${fl.map(([x,p,w])=>`<input ${x==="prot"||x==="part"?'type="number" min="0" ':""}style="flex:${w}" value="${esc(S.eq[k][x])}" placeholder="${p}" aria-label="${t} ${p}" oninput="S.eq.${k}.${x}=this.value;save()">`).join("")}</div>`;
  $("eqb").innerHTML='<div class="lab">Weapons</div>'+f("mh","Main Hand",[["n","Weapon",3],["dmg","Damage die (e.g. d8)",2],["tr","Traits",4]])+f("oh","Off Hand",[["n","Weapon",3],["dmg","Damage die (e.g. d6)",2],["tr","Traits",4]])+'<div class="lab" style="margin-top:8px">Armor (Protection and Partial reduce damage 1:1 when you take damage)</div>'+f("ar","Armor",[["n","Armor",3],["prot","Protection",2],["part","Partial",2],["tr","Traits",3]])+'<div class="lab" style="margin-top:8px">Shield</div>'+f("sh","Shield",[["n","Shield",3],["tr","Notes (parry bonus once known)",6]])}
 function warnings(){const w=[],P=(s,m)=>w.push({s,m}),sum=Object.values(S.r).reduce((a,b)=>a+b,0);
- if(A().r){const e=A().r.reduce((a,b)=>a+b,0)+Math.floor(S.lvl/5);if(sum!==e)P("Attributes",`Attribute ratings total ${sum}, but ${S.alloc} plus level bumps gives ${e}.`)}
+ if(S.lvl===0){const want=A().r.slice().sort((x,y)=>y-x),cur=Object.values(S.r).sort((x,y)=>y-x);if(want.join()!==cur.join())P("Attributes",`${S.alloc} ratings must be ${want.join(", ")} in any order. Yours are ${cur.join(", ")}.`);const nt=S.titles.filter(t=>t.i||t.b).length,mt=A().t?2:1;if(nt>mt)P("Identity & Progression",`${S.alloc} starts with ${mt} Title${mt>1?"s":""}, but you have ${nt}. Extra Titles can come from class features later.`)}
+ if(S.lvl>0&&A().r){const e=A().r.reduce((a,b)=>a+b,0)+Math.floor(S.lvl/5);if(sum!==e)P("Attributes",`Attribute ratings total ${sum}, but ${S.alloc} plus level bumps gives ${e}.`)}
  const left=earned()-spent();if(left<0)P("Qualities",`Qualities are overspent by ${-left}.`);else if(left>0)P("Qualities",`${left} Quality point(s) unspent. They can’t be saved for later levels.`);
- if(S.lvl>=2&&!S.titles.some(t=>t.i&&t.b))P("Identity & Progression","A Title (identity and bond) is required from level 2, with GL approval.");
+ {const n=S.titles.filter(t=>t.i&&t.b).length;if(A().t&&n<2)P("Identity & Progression",`${S.alloc} starts with an additional Background Title, so you need 2 Titles (${n} complete so far).`)}
+ if(!A().t&&S.lvl>=2&&!S.titles.some(t=>t.i&&t.b))P("Identity & Progression","A Title (identity and bond) is required from level 2, with GL approval.");
  return w}
 function derive(){
- ATT.forEach(([k])=>{S.r[k]=Math.max(0,Math.min(4,Math.round(+S.r[k])||0));$("d_"+k).textContent="d"+DIE[S.r[k]]});
+ ATT.forEach(([k])=>{S.r[k]=Math.max(0,Math.min(4,Math.round(+S.r[k])||0));$("d_"+k).textContent="d"+DIE[S.r[k]];$("p_"+k).textContent=DIE[S.r[k]]});
  const c=cap();S.dmg=Math.max(0,Math.min(5*c,Math.round(+S.dmg)||0));if(+$("dmg").value!==S.dmg&&document.activeElement!==$("dmg"))$("dmg").value=S.dmg;
  $("cap").textContent=c;const Lh=lost(),P=part();
- $("hearts").innerHTML=[...Array(5)].map((_,i)=>i<Lh?'<div class="h lost"><span>lost</span></div>':i===Lh&&P?`<div class="h"><i style="width:${P/c*100}%"></i><span>${P}/${c}</span></div>`:'<div class="h"><span>whole</span></div>').join("");
+ $("hearts").innerHTML=[...Array(5)].map((_,i)=>i<Lh?'<div class="h lost"><span>Lost ♥</span></div>':i===Lh&&P?`<div class="h"><i style="width:${P/c*100}%"></i><span>${P}/${c} ♥</span></div>`:'<div class="h"><span>Whole ♥</span></div>').join("");
  $("hnote").textContent=`${Lh} Heart(s) lost${P?`, one damaged ${P}/${c}`:""}. Each Heart holds ${c} damage; the total above drives the display.`;
  $("kd").hidden=S.dmg<5*c;if(S.dmg<5*c)S.wake="";$("wk").textContent=S.wake;
- $("needs").innerHTML=NEEDS.map(n=>`<div class="need"><strong>${n[1]}</strong><span role="img" aria-label="${n[1]}: ${S.needs[n[0]]} of 2 boxes marked">${[0,1].map(i=>`<span class="sq${S.needs[n[0]]>i?" on":""}"></span>`).join(" ")}</span></div>`).join("");
+ $("needs").innerHTML=NEEDS.map(n=>`<div class="need"><div style="flex:1"><strong>${n[1]}</strong><div class="note" style="margin:2px 0 0"><b>Marks:</b> ${n[2]}<br><b>Clears:</b> ${n[3]}</div></div><span role="img" aria-label="${n[1]}: ${S.needs[n[0]]} of 2 boxes marked${S.circ[n[0]]?", "+S.circ[n[0]]+" unrecoverable":""}">${[0,1].map(i=>`<span class="sq${S.needs[n[0]]>i?" on":""}${i<(S.circ[n[0]]||0)?" circ":""}"></span>`).join(" ")}</span></div>`).join("");
  $("pts").textContent=`Quality points: ${spent()} spent of ${earned()} earned`;$("pts").className="pill "+(spent()>earned()?"warn":"");
  $("xpNote").textContent=`Level ${S.lvl+1} costs ${need()} XP.`;$("lvBtn").disabled=S.xp<need();
  $("anote").textContent=A().note;$("strainv").innerHTML=[["mud","Muddled"],["ham","Hampered"],["worn","Worn (doubles Problems)"]].map(([k,t])=>`<span class="pill ${S.strain[k]?"on":"off"}">${t}</span>`).join("");{const n=(+S.quick||0)-(+S.slow||0);$("qsn").textContent=n>0?`Net: Quickened ×${n}`:n<0?`Net: Slowed ×${-n}`:"Net: neither"}
- const w=warnings();$("warn").innerHTML=w.map(x=>`<div>• <b>${x.s}</b>: ${x.m}</div>`).join("");$("warn").style.display=w.length?"":"none";
+ const w=warnings();$("warn").innerHTML=w.map(x=>`<div>• <b>${x.s}</b>: ${x.m}</div>`).join("");$("warn").style.display=w.length?"":"none";$("guide").style.display=S.lvl===0?"":"none";$("gnote").textContent=A().note;
  {const hs=new Set(w.map(x=>x.s));document.querySelectorAll("section.panel>h2").forEach(h=>{const f=hs.has(h.textContent.trim());h.classList.toggle("flag",f);h.title=f?"Needs attention":""})}
  const opts='<option value="">none</option>'+S.q.filter(q=>q.r>0&&q.n).map(q=>`<option>${esc(q.n)}</option>`).join("");
  if($("rq").dataset.o!==opts){$("rq").innerHTML=opts;$("rq").dataset.o=opts;$("rq").value=S.roll.q;if($("rq").value!==S.roll.q)S.roll.q=""}
@@ -203,9 +206,9 @@ function gainStrain(p){const s=S.strain,nm={mud:"Muddled",ham:"Hampered"};
  if(!s[p]){s[p]=true;L("Strain: "+nm[p])}else if(!s.worn){s.worn=true;L("Strain: Worn")}else{const o=!s.mud?"mud":!s.ham?"ham":null;if(o){s[o]=true;L("Strain: "+nm[o])}else{L("All Strain: lost a Heart.");addDmg(cap()-part());return}}sync()}
 function mark(n){const o=S.needs;if(o[n]<2){o[n]++;return}const x=Object.keys(o).find(k=>o[k]<2);if(x){o[x]++;L(n+" was full: marked another Need.")}else{L("All Needs full: Strain.");DSN=true;gainStrain(DS||(S.strain.mud&&!S.strain.ham?"ham":"mud"))}}
 function dawn(){const g=i=>+$(i).value||0,m=g("dm"),r=g("dr"),p=g("dp"),sh=g("ds"),o=S.needs;
- if(m<2)mark("hun");else if(m>=3&&o.hun)o.hun--;
- if(r<2)mark("tir");else if((r>=4||($("dc").checked&&r>=2))&&o.tir)o.tir--;
- if(p>=2)mark("dis");if($("dl").checked&&o.dis)o.dis--;
+ if(m<2)mark("hun");else if(m>=3&&o.hun>(S.circ.hun||0))o.hun--;
+ if(r<2)mark("tir");else if((r>=4||($("dc").checked&&r>=2))&&o.tir>(S.circ.tir||0))o.tir--;
+ if(p>=2)mark("dis");if($("dl").checked&&o.dis>(S.circ.dis||0))o.dis--;
  let h=2;if(S.strain.worn){S.strain.worn=false;h--;L("First Heart removed Worn.")}
  const n=Math.min(h,sh,(S.strain.mud?1:0)+(S.strain.ham?1:0));for(let i=0;i<n;i++){if(S.strain.mud)S.strain.mud=false;else S.strain.ham=false;h--}
  healHearts(h);L("Dawn applied: Needs updated, healing done.")}
@@ -222,7 +225,7 @@ function roll(){const r=S.roll;let net=+r.help-(+r.prob+strainP(r.att)+ +r.untr)
 function wakeRoll(k){const a=d(4);S.wake=k?`Get Up roll: ${a}. Wait ${a} Phase(s) after waking before you Get Up safely.`:`Wake roll: ${a}. You wake in ${a} Phase(s).`;L(S.wake);sync()}
 function openDawn(){DS=null;DSN=false;["dm","dr"].forEach(i=>$(i).value="");$("dp").value=0;$("dc").checked=$("dl").checked=false;$("ds").value="0";$("dsw").style.display=(S.strain.mud||S.strain.ham)?"":"none";$("derr").textContent="";$("dstep1").hidden=false;$("dstep2").hidden=true;$("dm_ov").hidden=false;$("dm").focus()}
 function closeDawn(){$("dm_ov").hidden=true}
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDawn();closeStrain();closeHit()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDawn();closeStrain();closeHit();closeMail();closeTal()}});
 function strainResult(p){const s=S.strain,nm={mud:"Muddled",ham:"Hampered"};if(!s[p])return "You gain "+nm[p]+".";if(!s.worn)return "You already have "+nm[p]+", so you become Worn.";const o=!s.mud?"mud":!s.ham?"ham":null;return o?"You are already Worn, so you gain "+nm[o]+" instead.":"You have every Strain, so you lose a Heart."}
 function openStrain(mode){const s=S.strain,nm={mud:"Muddled",ham:"Hampered",worn:"Worn"};let h="";
  if(mode==="gain"){$("stl").textContent="Gain Strain: which type?";$("stx").textContent="Muddled: Problem on Intelligence and Influence. Hampered: Problem on Athleticism and Resilience. If you already have the type you pick, the Strain escalates.";
@@ -236,17 +239,19 @@ function doAsk(){const f=CB;CB=null;closeStrain();if(f)f()}
 function closeStrain(){$("sm_ov").hidden=true}
 function applyStrain(p){closeStrain();gainStrain(p)}
 function clearStrain(p){S.strain[p]=false;L("Strain removed: "+{mud:"Muddled",ham:"Hampered",worn:"Worn"}[p]);closeStrain();sync()}
-const NM={hun:"Hungry",tir:"Tired",dis:"Distressed"};
-function openNeed(mode,from){const o=S.needs;let h="";
- if(mode==="mark"){$("stl").textContent="Mark a Need: which type?";$("stx").textContent="Needs don’t penalize rolls; they warn you before Strain. A full Need spills into another Need, then into Strain.";
-  h=Object.keys(NM).map(k=>`<div style="width:100%"><button onclick="pickNeed('${k}')">${NM[k]}</button><div class="note" style="margin:3px 0 0">${o[k]<2?`Marks box ${o[k]+1} of 2.`:"Already full. You will choose another Need next."}</div></div>`).join("")}
- else if(mode==="cascade"){$("stl").textContent=NM[from]+" is full: mark which Need instead?";$("stx").textContent="Choose one that has room.";
+const NM={hun:"Hungry",tir:"Tired",dis:"Distressed"};let MC=false,CC=false;
+function openNeed(mode,from,keep){const o=S.needs,cr=k=>S.circ[k]||0;let h="";if(mode==="mark")MC=false;if(mode==="clear"&&!keep)CC=false;
+ if(mode==="mark"){$("stl").textContent="Mark a Need: which type?";$("stx").textContent="Needs don\u2019t penalize rolls; they warn you before Strain. A full Need spills into another Need, then into Strain.";
+  h=`<label class="chk" style="width:100%"><input type="checkbox" onchange="MC=this.checked"> Unrecoverable: circle the box so it can\u2019t be cleared normally. Note the fix in Recovery / Medical Notes.</label>`+Object.keys(NM).map(k=>`<div style="width:100%"><button onclick="pickNeed('${k}')">${NM[k]}</button><div class="note" style="margin:3px 0 0">${o[k]<2?`Marks box ${o[k]+1} of 2.`:"Already full. You will choose another Need next."}</div></div>`).join("")}
+ else if(mode==="cascade"){$("stl").textContent=NM[from]+" is full: mark which Need instead?";$("stx").textContent=MC?"Choose one that has room. The box will be circled as unrecoverable.":"Choose one that has room.";
   h=Object.keys(NM).filter(k=>k!==from&&o[k]<2).map(k=>`<button onclick="markNeed('${k}')">${NM[k]}</button>`).join("")}
- else{$("stl").textContent="Clear a Need";$("stx").textContent="Clears one box at a time.";h=Object.keys(NM).filter(k=>o[k]>0).map(k=>`<button onclick="clearNeed('${k}')">${NM[k]} (${o[k]} of 2)</button>`).join("")||'<p class="note">No Needs are marked.</p>'}
+ else{$("stl").textContent="Clear a Need";$("stx").textContent="Clears one box at a time. Circled boxes stay unless you tick the option below.";
+  const bt=Object.keys(NM).map(k=>{let b="";if(o[k]-cr(k)>0)b+=`<button onclick="clearNeed('${k}')">${NM[k]} (${o[k]-cr(k)} clearable)</button>`;if(CC&&cr(k)>0)b+=`<button onclick="clearNeed('${k}',1)">${NM[k]}: unrecoverable box</button>`;return b}).join("");
+  h=`<label class="chk" style="width:100%"><input type="checkbox" ${CC?"checked":""} onchange="CC=this.checked;openNeed('clear',null,true)"> Allow clearing an unrecoverable (circled) box</label>`+(bt||'<p class="note">Nothing can be cleared here.</p>')}
  $("sbtn").innerHTML=h;$("sm_ov").hidden=false}
-function pickNeed(k){const o=S.needs;if(o[k]<2){markNeed(k);return}if(Object.keys(NM).some(x=>x!==k&&o[x]<2))openNeed("cascade",k);else{closeStrain();L("All Needs full: gain Strain.");openStrain("gain")}}
-function markNeed(k){S.needs[k]++;L(NM[k]+" marked ("+S.needs[k]+" of 2).");closeStrain();sync()}
-function clearNeed(k){S.needs[k]--;L(NM[k]+" cleared ("+S.needs[k]+" of 2).");closeStrain();sync()}
+function pickNeed(k){const o=S.needs;if(o[k]<2){markNeed(k);return}if(Object.keys(NM).some(x=>x!==k&&o[x]<2))openNeed("cascade",k);else{MC=false;closeStrain();L("All Needs full: gain Strain.");openStrain("gain")}}
+function markNeed(k){S.needs[k]++;if(MC)S.circ[k]=(S.circ[k]||0)+1;L(NM[k]+(MC?" marked as unrecoverable":" marked")+" ("+S.needs[k]+" of 2).");MC=false;closeStrain();sync()}
+function clearNeed(k,c){S.needs[k]--;if(c)S.circ[k]=Math.max(0,(S.circ[k]||0)-1);L(NM[k]+(c?" unrecoverable box cleared (":" cleared (")+S.needs[k]+" of 2).");closeStrain();sync()}
 function previewDawn(){const bak=JSON.stringify(S);PREV=true;PL=[];let out;try{dawn();out={a:JSON.parse(JSON.stringify(S)),b:JSON.parse(bak),l:PL.slice()}}finally{PREV=false;S=JSON.parse(bak)}return out}
 function reviewDawn(){if($("dm").value===""||$("dr").value===""){$("derr").textContent="Enter the meals eaten and Phases rested first.";return}
  DSN=false;const {a,b,l}=previewDawn(),c=cap(),nm={hun:"Hungry",tir:"Tired",dis:"Distressed"},st=s=>[s.mud&&"Muddled",s.ham&&"Hampered",s.worn&&"Worn"].filter(Boolean).join(", ")||"none",rows=[];
@@ -260,24 +265,67 @@ function confirmDawn(){if(DSN&&!DS)return;dawn();closeDawn()}
 let DS=null,DSN=false;
 let H={t:"full",h:"full"};
 const pv=k=>Math.max(0,parseFloat((S.eq.ar||{})[k])||0);
-function hitCalc(){const inc=Math.max(1,Math.round(+$("amt").value)||1),v=H.t==="full"?pv("prot"):H.t==="partial"?pv("part"):0,eff=H.h==="full"?v:H.h==="half"?Math.floor(v/2):0;return{inc,v,eff,dmg:Math.max(0,inc-eff)}}
+function hitCalc(){const base=Math.max(1,Math.round(+$("amt").value)||1),inc=H.v?base*2:base,v=H.t==="full"?pv("prot"):H.t==="partial"?pv("part"):0,eff=H.h==="full"?v:H.h==="half"?Math.floor(v/2):0;return{base,inc,v,eff,dmg:Math.max(0,inc-eff)}}
 function hitRender(){const c=hitCalc(),rad=(n,val,lab,cur)=>`<label class="chk"><input type="radio" name="${n}" ${cur===val?"checked":""} onchange="H.${n}='${val}';hitRender()"> ${lab}</label>`;
- $("hin").textContent=`Incoming damage: ${c.inc}`;
+ $("hin").textContent=`Incoming damage: ${c.base}${H.v?" x2 = "+c.inc:""}`;
  $("hty").innerHTML=rad("t","full",`Full protection (${pv("prot")})`,H.t)+rad("t","partial",`Partial protection (${pv("part")})`,H.t)+rad("t","none","No protection",H.t);
  $("hhw").innerHTML=H.t==="none"?'<span class="note">No protection applies.</span>':rad("h","full","Counts fully",H.h)+rad("h","half","Halved this time (rounded down)",H.h)+rad("h","ign","Ignored this time",H.h);
  $("hres").textContent=`${c.inc} incoming − ${c.eff} protection = ${c.dmg} damage taken`}
-function openHit(){H={t:"full",h:"full"};hitRender();$("ht_ov").hidden=false}
+function openHit(){H={t:"full",h:"full",v:false};$("hvu").checked=false;hitRender();$("ht_ov").hidden=false}
 function closeHit(){$("ht_ov").hidden=true}
-function confirmHit(){const c=hitCalc();closeHit();L(`Hit: ${c.inc} incoming, ${c.eff} absorbed, ${c.dmg} taken.`);addDmg(c.dmg)}
-function rta(){$("talents").innerHTML=S.talents.map((q,i)=>`<div class="qrow"><input value="${esc(q.n)}" placeholder="Talent" aria-label="Talent name" oninput="S.talents[${i}].n=this.value;change()"><input type="number" min="0" value="${q.r}" aria-label="Talent value" oninput="S.talents[${i}].r=Math.max(0,+this.value||0);change()"><button class="x" aria-label="Remove Talent" onclick="S.talents.splice(${i},1);rta();change()">×</button></div>`).join("")}
+function confirmHit(){const c=hitCalc();closeHit();L(`Hit${H.v?" (Vulnerable, doubled)":""}: ${c.inc} incoming, ${c.eff} absorbed, ${c.dmg} taken.`);addDmg(c.dmg)}
+const TAL=[["Social",[["Perform","entertain, distract, deceive, blend"],["Network","find contacts, establish rapport, meet-ups"],["Lead","compel, teach, rally"],["Invite","persuade, entice, pacify"],["Negotiate",""]]],["Physical",[["Athletics","running, jumping, climbing, swimming"],["Acrobatics","swinging, tumbling, flexibility"],["Hauling","lift, drag, carry"],["Unarmed Melee","grapple, brawl"],["Armed Melee","polearms, small arms, chain/rope, swords, axes, bludgeons"],["Ranged","throw, shoot"]]],["Mental",[["Know","research, trivia, specialty topics"],["Search","actively looking for something; a closely related Talent may be rolled with Perception instead"],["Assess","strategy/security, deception, money value, many others"]]],["Natural",[["Camp","shelter, rope, fire, cook"],["Navigate","terrain or region"],["Handling","ride, tame, train"],["Hunt","identify/track, traps, by type"],["Medicine","by area/zone, or by ailment"]]],["Mechanical",[["Vehicle","interstellar, flying, sea, land, massive"],["Computer","by service or activity"],["Machine","by type or purpose"],["Craft","by type of craftsmanship"]]],["Cunning",[["Sleight of Hand","pilfering, games and tricks"],["Stealth","hide, move silently"],["Burglary","lockpicking, alarms, alternative entries/exits"]]]];
+const tinfo=n=>{const b=String(n).split("(")[0].trim().toLowerCase();for(const [c,l] of TAL)for(const [t,e] of l)if(t.toLowerCase()===b)return c+(e?": "+e:"");return ""};
+function rta(){$("talents").innerHTML=S.talents.length?S.talents.map((q,i)=>`<div style="margin-bottom:8px"><div class="qrow" style="margin-bottom:0"><input value="${esc(q.n)}" placeholder="Talent" aria-label="Talent name" oninput="S.talents[${i}].n=this.value;change()"><input type="number" min="0" value="${q.r}" aria-label="Talent value" oninput="S.talents[${i}].r=Math.max(0,+this.value||0);change()"><button class="x" aria-label="Remove Talent" onclick="S.talents.splice(${i},1);rta();change()">×</button></div>${tinfo(q.n)?`<div class="note" style="margin:2px 0 0">${esc(tinfo(q.n))}</div>`:""}</div>`).join(""):'<p class="note">No Talents yet. Talents come from Class features.</p>'}
+function openTal(){$("tlist").innerHTML=TAL.map(([c,l])=>`<div class="lab" style="margin-top:10px">${c}</div>`+l.map(([t,e])=>`<div style="margin:3px 0"><button class="ghost" onclick="addTal('${t}')">${t}</button> <span class="note">${esc(e)}</span></div>`).join("")).join("");$("tmsg").textContent="";$("tcu").value="";$("tl_ov").hidden=false}
+function closeTal(){$("tl_ov").hidden=true}
+function addTal(n){n=String(n||"").trim();if(!n)return;S.talents.push({n,r:1});rta();change();$("tmsg").textContent="Added "+n+".";$("tcu").value=""}
 function rk(){$("contacts").innerHTML=S.contacts.length?S.contacts.map((c,i)=>`<div class="frow"><div class="trow" style="grid-template-columns:2fr 1fr 1fr 30px"><input value="${esc(c.n)}" placeholder="Name" aria-label="Contact name" oninput="S.contacts[${i}].n=this.value;save()"><input value="${esc(c.loy)}" placeholder="Loyalty" aria-label="Loyalty" oninput="S.contacts[${i}].loy=this.value;save()"><input value="${esc(c.pow)}" placeholder="Power" aria-label="Power" oninput="S.contacts[${i}].pow=this.value;save()"><button class="x" aria-label="Remove contact" onclick="ask('Remove this contact?','Their details will be deleted.','Remove',()=>{S.contacts.splice(${i},1);rk();save()})">×</button></div><div class="trow" style="grid-template-columns:1fr 1fr"><input value="${esc(c.i)}" placeholder="Title identity" aria-label="Contact Title identity" oninput="S.contacts[${i}].i=this.value;save()"><input value="${esc(c.b)}" placeholder="Title bond" aria-label="Contact Title bond" oninput="S.contacts[${i}].b=this.value;save()"></div><textarea placeholder="Notes" aria-label="Contact notes" oninput="S.contacts[${i}].nt=this.value;save()">${esc(c.nt)}</textarea></div>`).join(""):'<p class="note">No contacts yet.</p>'}
 function acc(){document.querySelectorAll("section.panel").forEach(sec=>{const h=sec.querySelector("h2"),w=sec.querySelector(".acc");if(!h||!w)return;const c=!!S.collapsed[h.textContent.trim()];w.hidden=c;h.setAttribute("aria-expanded",String(!c))})}
+function exportCode(){return JSON.stringify(Object.assign({},S,{log:[],last:"",collapsed:{},wake:""}))}
+function exportJ(){$("iot").value=exportCode();openIO()}
+function sheetText(){const o=[],H=t=>o.push("",t,"-".repeat(t.length)),B=t=>o.push(t),L1=t=>o.push("- "+t),L2=t=>String(t).split("\n").forEach(x=>o.push("    "+x)),c=cap(),st=S.strain,e=S.eq;
+ const feats=(arr,none)=>arr.length?arr.forEach(r=>{L1(r.n||"(unnamed)");r.f.forEach(f=>L2((f.n||"Feature")+(f.t?": "+f.t:"")))}):B(none);
+ H("Identity & Progression");B("Hero Name: "+(S.name||"-"));B("Player: "+(S.player||"-"));B("Level: "+S.lvl);B("Current XP: "+S.xp);
+ B("");B("Race(s) & Racial Features:");feats(S.races,"none");
+ B("");B("Background Titles:");const ts=S.titles.filter(t=>t.i||t.b);ts.length?ts.forEach(t=>L1((t.i+" "+t.b).trim())):B("none");
+ H("Attributes");B("Caliber Die: d"+S.cal);B("Starting Allocation: "+S.alloc);ATT.forEach(a=>L1(a[1]+": rating "+S.r[a[0]]+", d"+DIE[S.r[a[0]]]+", passive "+DIE[S.r[a[0]]]));B("Injury Cap: "+c);
+ H("Qualities");const qs=S.q.filter(q=>q.n);qs.length?qs.forEach(q=>L1(q.n+": "+q.r)):B("none");
+ H("Classes & Features");feats(S.classes,"none");
+ H("Talents");const tl=S.talents.filter(q=>q.n);tl.length?tl.forEach(q=>L1(q.n+": "+q.r)):B("none");
+ H("Well-being");B("Needs:");NEEDS.forEach(n=>L1(n[1]+": "+S.needs[n[0]]+" of 2"+(S.circ[n[0]]?" ("+S.circ[n[0]]+" unrecoverable)":"")));
+ B("Strain: "+([st.mud&&"Muddled",st.ham&&"Hampered",st.worn&&"Worn"].filter(Boolean).join(", ")||"none"));B("Knocked Down: "+(S.kdf?"yes":"no")+" | Dying: "+(S.dying?"yes":"no"));if(S.rec){B("Recovery / Medical Notes:");L2(S.rec)}
+ H("Combat");B("Hearts: "+lost()+" of 5 lost"+(part()?", one damaged "+part()+"/"+c:"")+" (total damage "+S.dmg+")");B("Quickened: "+(S.quick||0)+" | Slowed: "+(S.slow||0));
+ B("");B("Equipment:");L1("Main Hand: "+(e.mh.n||"-")+" | damage die "+(e.mh.dmg||"-")+(e.mh.tr?" | "+e.mh.tr:""));L1("Off Hand: "+(e.oh.n||"-")+" | damage die "+(e.oh.dmg||"-")+(e.oh.tr?" | "+e.oh.tr:""));
+ L1("Armor: "+(e.ar.n||"-")+" | protection "+(e.ar.prot||"-")+" | partial "+(e.ar.part||"-")+(e.ar.tr?" | "+e.ar.tr:""));L1("Shield: "+(e.sh.n||"-")+(e.sh.tr?" | "+e.sh.tr:""));if(S.gn){B("Other equipment notes:");L2(S.gn)}
+ H("Inventory & Supplies");const iv=S.inv.filter(x=>x.n);iv.length?iv.forEach(x=>L1(x.n+(x.q?" x"+x.q:"")+(x.t?" - "+x.t:""))):B("none");
+ H("Contacts");S.contacts.length?S.contacts.forEach(k=>{L1((k.n||"(unnamed)")+" | loyalty "+(k.loy||"-")+" | power "+(k.pow||"-")+((k.i||k.b)?" | "+(k.i+" "+k.b).trim():""));if(k.nt)L2(k.nt)}):B("none");
+ H("Notes & Log");S.notes?L2(S.notes):B("none");
+ return o.join("\n").replace(/^\n/,"")}
+function openMail(){$("mnote").textContent=(sheetText().length+exportCode().length)>1800?"This message is long. Some email apps cut off long messages. The full code is also available under Export / Import.":"";$("ml_ov").hidden=false}
+function closeMail(){$("ml_ov").hidden=true}
+function sendMail(){const to=$("mto").value.trim(),body=(sheetText()+"\n\n=================================\nCharacter Sheet Code (https://stormfarers.github.io/RPG/):\n"+exportCode()).replace(/\n/g,"\r\n"),u="mailto:"+encodeURIComponent(to).replace(/%40/g,"@")+"?subject="+encodeURIComponent("Storm Farers character: "+(S.name||"Hero"))+"&body="+encodeURIComponent(body);const a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();closeMail()}
+let SECS=[],NC=0;
+const ncols=()=>Math.max(1,Math.min(3,Math.floor((document.querySelector(".grid").clientWidth+16)/436)));
+function layout(n){const g=document.querySelector(".grid"),a=document.activeElement,y=window.scrollY;document.body.style.minHeight=document.documentElement.scrollHeight+"px";NC=n||ncols();
+ SECS.forEach(e=>g.appendChild(e));g.querySelectorAll(".band").forEach(b=>b.remove());
+ let band=null,cols=[];
+ SECS.forEach(e=>{e.classList.toggle("wide2",!!e.dataset.wide&&NC>=2);if(e.classList.contains("full")||e.dataset.wide||NC===1){band=null;g.appendChild(e);return}
+  if(!band){band=document.createElement("div");band.className="band";cols=[];for(let i=0;i<NC;i++){const c=document.createElement("div");c.className="col";band.appendChild(c);cols.push(c)}g.appendChild(band)}
+  let m=cols[0];cols.forEach(c=>{if(c.offsetHeight<m.offsetHeight)m=c});m.appendChild(e)});
+ if(a&&a!==document.body&&a.isConnected){try{a.focus({preventScroll:true})}catch(x){}}document.body.style.minHeight="";window.scrollTo(0,y)}
+function buildJump(){const sel=$("jsel");SECS.forEach((e,i)=>{const o=document.createElement("option");o.value=i;o.textContent=e.tagName==="SECTION"?e.querySelector("h2").textContent.trim():"Export / Import";sel.appendChild(o)})}
+function jumpTo(i){if(i==="")return;const e=SECS[+i];if(e.tagName==="DETAILS")e.open=true;else{const k=e.querySelector("h2").textContent.trim();if(S.collapsed[k]){S.collapsed[k]=false;acc();save();layout()}}e.scrollIntoView({behavior:"smooth",block:"start"});$("jsel").value=""}
 function openIO(){$("io").open=true;$("io").scrollIntoView()}
 function importJ(){try{S=Object.assign(blank(),JSON.parse($("iot").value));norm();sync()}catch(e){ask("Import failed","That text isn’t a valid character export.","OK",null)}}
 function clearAll(){ask("Start a new hero?","This clears the sheet. Export first if you want to keep this one.","Start new hero",()=>{S=blank();sync()})}
-$("attrs").innerHTML=ATT.map(a=>`<tr><td>${a[1]}</td><td><input id="r_${a[0]}" type="number" min="0" max="4" data-k="r.${a[0]}" aria-label="${a[1]} rating"></td><td class="die" id="d_${a[0]}"></td></tr>`).join("");
+$("attrs").innerHTML=ATT.map(a=>`<tr><td>${a[1]}</td><td><input id="r_${a[0]}" type="number" min="0" max="4" data-k="r.${a[0]}" aria-label="${a[1]} rating"></td><td class="die" id="d_${a[0]}"></td><td class="die" id="p_${a[0]}"></td></tr>`).join("");
 $("ra").innerHTML=ATT.map(a=>`<option value="${a[0]}">${a[1]}</option>`).join("");
 document.querySelectorAll("[data-k]").forEach(el=>el.addEventListener("input",()=>{const k=el.dataset.k;let v=el.type==="checkbox"?el.checked:(el.type==="number"||el.dataset.n)?+el.value:el.value;sp(k,v);if(k==="alloc")applyAlloc();change()}));
-document.querySelectorAll("section.panel").forEach(sec=>{const h=sec.querySelector("h2"),w=document.createElement("div");w.className="acc";while(h.nextSibling)w.appendChild(h.nextSibling);sec.appendChild(w);h.tabIndex=0;h.setAttribute("role","button");const t=()=>{S.collapsed[h.textContent.trim()]=!w.hidden;acc();save()};h.onclick=t;h.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}}});
+document.querySelectorAll("section.panel").forEach(sec=>{const h=sec.querySelector("h2"),w=document.createElement("div");w.className="acc";while(h.nextSibling)w.appendChild(h.nextSibling);sec.appendChild(w);h.tabIndex=0;h.setAttribute("role","button");const t=()=>{const top=h.getBoundingClientRect().top;S.collapsed[h.textContent.trim()]=!w.hidden;acc();save();layout();const d=h.getBoundingClientRect().top-top;if(Math.abs(d)>1){window.scrollBy(0,d);if(Math.abs(h.getBoundingClientRect().top-top)>1)h.scrollIntoView({block:"nearest"})}};h.onclick=t;h.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}}});
 sync();
+document.querySelectorAll(".grid>.ov").forEach(o=>document.body.appendChild(o));
+SECS=[...document.querySelector(".grid").children];layout();buildJump();
+let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(ncols()!==NC)layout()},150)});
+window.addEventListener("beforeprint",()=>layout(1));window.addEventListener("afterprint",()=>layout());
 </script></body></html>
