@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Storm Farers Character Sheet v3</title>
+<title>Storm Farers Character Sheet v4</title>
 <style>
 :root{--ink:#202a32;--mute:#687780;--paper:#f5f3ed;--panel:#fffefa;--line:#d9ddd8;--acc:#315b63;--acc2:#e8efed;--bad:#9b4545;--ok:#2f7a4f;--in:#fff;--hd:#263b42;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media screen and (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e3ecf2;--mute:#92a5b3;--paper:#10181f;--panel:#18232d;--line:#2f4151;--acc:#6fc3cc;--acc2:#1b3a40;--bad:#e27a7d;--ok:#6fcb97;--in:#101a22;--hd:#0c1319}}
@@ -15,7 +15,7 @@ button{border:1px solid var(--acc);background:var(--acc2);color:var(--ink);paddi
 button:hover:not(:disabled){background:var(--acc);color:var(--panel)}button:disabled{opacity:.45;cursor:default}
 button.ghost{background:none;border-color:var(--line)}header button{background:#f8f7f1;color:#263b42;border-color:#aab9b6}
 main{max-width:1440px;margin:20px auto;padding:0 16px 50px}
-.grid{display:block}.band{display:flex;gap:16px;align-items:flex-start}.col{flex:1;min-width:0}.wide2 .wb-in{display:grid;grid-template-columns:1fr 1fr;gap:28px}.wide2 .wb-l>h3:first-child,.wide2 .wb-r>h3:first-child{margin-top:0}main>.guide{margin:0 0 16px;background:var(--acc2);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 14px;font-size:14px}.guide summary{cursor:pointer}.guide ol{margin:8px 0 0;padding-left:20px}.guide li{margin:4px 0}@media print{.guide{display:none}}.jumpbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:10px;align-items:center;padding:8px max(16px,calc((100% - 1440px)/2));background:var(--panel);border-bottom:1px solid var(--line)}.jumpbar label{font-size:13px;font-weight:700;color:var(--mute)}.jumpbar select{width:auto;min-width:220px;max-width:100%}.panel,#io{scroll-margin-top:72px}@media print{.jumpbar{display:none}}
+.grid{display:block}.band{display:flex;gap:16px;align-items:flex-start}.col{flex:1;min-width:0}.wide2 .wb-in{display:grid;grid-template-columns:1fr 1fr;gap:28px}.wide2 .wb-l>h3:first-child,.wide2 .wb-r>h3:first-child{margin-top:0}main>.guide{margin:0 0 16px;background:var(--acc2);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:8px;padding:10px 14px;font-size:14px}.guide summary{cursor:pointer}.guide ol{margin:8px 0 0;padding-left:20px}.guide li{margin:4px 0}@media print{.guide{display:none}}body::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top,0px);background:var(--panel);z-index:30}.jumpbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:10px;align-items:center;padding:8px max(16px,calc((100% - 1440px)/2));background:var(--panel);border-bottom:1px solid var(--line)}.jumpbar label{font-size:13px;font-weight:700;color:var(--mute)}.jumpbar select{width:auto;min-width:220px;max-width:100%}.panel,#io{scroll-margin-top:72px}.fg{display:grid;grid-template-columns:repeat(var(--fc,1),minmax(0,1fr));column-gap:28px;background-image:repeating-linear-gradient(to right,transparent 0,transparent calc((100% + 28px)/var(--fc,1) - 14.5px),var(--line) calc((100% + 28px)/var(--fc,1) - 14.5px),var(--line) calc((100% + 28px)/var(--fc,1) - 13.5px),transparent calc((100% + 28px)/var(--fc,1) - 13.5px),transparent calc((100% + 28px)/var(--fc,1)))}.fc2{display:grid;grid-template-columns:1fr 1fr;gap:6px}.frow .lab{margin-bottom:2px}@media print{.jumpbar{display:none}}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px;break-inside:avoid;margin-bottom:16px}
 .panel h2{font:600 18px Georgia,serif;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .panel h3{font-size:12px;color:var(--mute);margin:14px 0 7px;font-weight:700}
@@ -53,7 +53,8 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <header><div><h1>Storm Farers of Estaron</h1><p>A Game of Heroic Survival: Character Sheet</p></div>
 <div class="actions"><span id="saveStatus">Autosave can be lost. Export any character sheet you want to keep.</span><button onclick="try{print()}catch(e){}">Print</button><button onclick="exportJ()">Export / Import</button><button onclick="openMail()">Email</button><button onclick="clearAll()">New hero</button></div></header>
 <nav class="jumpbar" aria-label="Jump to a section"><label for="jsel">Jump to</label><select id="jsel" onchange="jumpTo(this.value)"><option value="">Choose a section…</option></select></nav>
-<main><div class="warnbox" id="warn" role="status"></div><div class="guide" id="guide"><details open><summary><b>Character creation steps</b> (shown at level 0 only)</summary><ol><li><b>Caliber:</b> ask your GL which Caliber die to use (d10 is recommended for general groups).</li><li><b>Allocation:</b> pick a Starting Allocation under Attributes, then set each rating (the set can go to the Attributes in any order). <span id="gnote"></span></li><li><b>Title:</b> write a Background Title: an identity (role, profession, livelihood) and a bond (place, group, major event). Your GL must approve it, and you can settle it by level 2 if you have no concept yet.</li><li><b>Race:</b> add your race and its features under Identity &amp; Progression.</li><li><b>Qualities:</b> if your allocation gave +3 Quality points, spend them under Qualities (ranks 1 to 3 cost 1 each).</li><li><b>Gear:</b> add the common tools of your Title’s trade to Inventory &amp; Supplies, and your weapons and armor under Combat.</li><li><b>Ready:</b> you start with 5 Hearts and clear Needs. Earn 4 XP to reach level 1, then choose your first class and a Fundamental Feature.</li></ol></details></div><div class="grid">
+<datalist id="dl_q"></datalist><datalist id="dl_t"></datalist>
+<main><div class="warnbox" id="warn" role="status"></div><div class="guide" id="guide"><details open><summary><b>Character creation steps</b> (shown at level 0 only)</summary><ol><li><b>Caliber:</b> ask your GL which Caliber die to use (d10 is recommended for general groups).</li><li><b>Allocation:</b> pick a Starting Allocation under Attributes, then set each rating (the set can go to the Attributes in any order). <span id="gnote"></span></li><li><b>Title:</b> write a Background Title: an identity (role, profession, livelihood) and a bond (place, group, major event). Your GL must approve it, and you can settle it by level 2 if you have no concept yet.</li><li><b>Features:</b> add your race and class features under Features. If your allocation gave +3 Quality points, add Quality features there (ranks 1 to 3 cost 1 point each).</li><li><b>Gear:</b> add the common tools of your Title’s trade to Inventory &amp; Supplies, and your weapons and armor under Combat.</li><li><b>Ready:</b> you start with 5 Hearts and clear Needs. Earn 4 XP to reach level 1, then choose your first class and a Fundamental Feature.</li></ol></details></div><div class="grid">
 
 <section class="panel"><h2>Identity &amp; Progression</h2>
 <div class="fields">
@@ -65,7 +66,7 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <div class="field"><label for="xp">Current XP</label><input id="xp" type="number" min="0" data-k="xp"></div>
 </div>
 <div class="row"><button onclick="S.xp++;sync()">+1 XP</button><button id="lvBtn" onclick="levelUp()">Level up</button><span class="note" id="xpNote"></span></div>
-<h3>Race(s) &amp; Racial Features</h3><div id="races"></div><button class="ghost" style="margin-top:8px" onclick="S.races.push({n:'',f:[]});rr();save()">+ Add Race</button><h3>Background Titles (identity + bond)</h3><p class="note" style="margin:0 0 6px">From level 2 you can be Untrained at things your Titles don’t cover: −1 for common tasks, −3 for unusual or complex ones.</p><div id="titles"></div><button class="ghost" onclick="S.titles.push({i:'',b:''});rt();change()">+ Add Title</button>
+<h3>Background Titles (identity + bond)</h3><p class="note" style="margin:0 0 6px">From level 2 you can be Untrained at things your Titles don’t cover: −1 for common tasks, −3 for unusual or complex ones.</p><div id="titles"></div><button class="ghost" onclick="S.titles.push({i:'',b:''});rt();change()">+ Add Title</button>
 
 
 
@@ -82,20 +83,13 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <div class="row"><span class="pill">Injury Cap <b id="cap"></b></span><span class="pill">Passive = Base (die size) + best of: Background (+3) OR Quality OR Talent</span></div>
 <p class="note">Rating 0 to 4 gives d4 to d12. A Passive Value equals the die size (d6 = 6, d10 = 10). Choosing an allocation fills in ratings, and you can still edit them.</p></section>
 
-<section class="panel"><h2>Qualities</h2>
-<p class="note" style="margin:-4px 0 10px">Rename, add or remove freely. One Quality applies per roll.</p>
-<div id="quals"></div><button class="ghost" onclick="S.q.push({n:'',r:0});rq();change()">+ Add Quality</button>
-<div class="row"><span class="pill" id="pts"></span></div>
-<p class="note">Ranks 1 to 3 cost 1 each, 4 and 5 cost 2, rank 6 costs 3. Unspent points can’t be saved.</p></section>
-
-<section class="panel"><h2>Classes &amp; Features</h2><div id="classes"></div><button class="ghost" style="margin-top:8px" onclick="S.classes.push({n:'',f:[]});rc();save()">+ Add Class</button></section>
-<section class="panel"><h2>Talents</h2><p class="note" style="margin:-4px 0 10px">Talents and their upgrades come from Class features. One Talent can add its value to a Check at a time. Search is the default for actively looking for something, but if another Talent is clearly closely related you may roll Perception with that Talent instead.</p><div id="talents"></div><button class="ghost" onclick="openTal()">+ Add Talent</button></section>
+<section class="panel full"><h2>Features</h2><p class="note" style="margin:-4px 0 10px">Race, Class, General and Custom features live here. One feature’s Rank can add to a Check at a time. Search is the default for actively looking for something; if another feature is clearly closely related you may roll Perception with it instead.</p><div id="feats" class="fg"></div><button class="ghost" onclick="addFeat()">+ Add Feature</button><div class="row"><span class="pill" id="pts"></span></div><p class="note">Quality ranks 1 to 3 cost 1 point each, 4 and 5 cost 2, rank 6 costs 3. Unspent points can’t be saved.</p></section>
 <section class="panel wb" data-wide="1"><h2>Well-being</h2>
 
 
 
 
-<div class="wb-in"><div class="wb-l"><h3>Needs</h3><div id="needs"></div><div class="row"><button onclick="openNeed('mark')">Mark a Need</button><button class="ghost" onclick="openNeed('clear')">Clear a Need</button></div>
+<div class="wb-in"><div class="wb-l"><h3>Needs</h3><div id="needs"></div><div class="row"><button onclick="openNeed('mark')">Mark Needs</button><button class="ghost" onclick="openNeed('clear')">Clear Needs</button></div>
 <p class="note" style="margin:4px 0 0">A circled box is unrecoverable. Note how to fix it in Recovery / Medical Notes.</p>
 </div><div class="wb-r"><h3>Strain</h3>
 <div class="row" id="strainv" aria-live="polite"></div>
@@ -108,7 +102,6 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <div class="row"><label class="chk"><input type="checkbox" id="dc"> Sheltered, safe, cozy</label><label class="chk"><input type="checkbox" id="dl"> Spent a Phase lifting spirits</label></div>
 <p class="warn" id="derr"></p><div class="row"><button class="ghost" onclick="closeDawn()">Cancel</button><button onclick="reviewDawn()">Review</button></div></div><div id="dstep2" hidden><div id="dsum"></div><div class="row"><button class="ghost" onclick="$('dstep2').hidden=true;$('dstep1').hidden=false">Back</button><button id="dcf" onclick="confirmDawn()">Confirm Dawn</button></div></div></div></div>
 
-<div id="tl_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="tlt"><h2 id="tlt">Add a Talent</h2><p class="note" style="margin-top:0">Pick a default Talent or type a custom one. A new Talent starts at value 1, and you can change it.</p><div id="tlist"></div><div class="field" style="margin-top:10px"><label for="tcu">Custom or more specific Talent (for example Navigate (Highlands))</label><div class="row"><input id="tcu" style="flex:1"><button onclick="addTal($('tcu').value)">Add</button></div></div><p class="note" id="tmsg" aria-live="polite"></p><div class="row"><button class="ghost" onclick="closeTal()">Done</button></div></div></div>
 <div id="ml_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtl"><h2 id="mtl">Email this character</h2><p class="note" style="margin-top:0">Opens your email app with a text summary of the character, followed by the Character Sheet Code for importing. Leave the address blank to choose it in your email app.</p><div class="field"><label for="mto">Send to (optional)</label><input id="mto" type="email" placeholder="name@example.com"></div><p class="note" id="mnote"></p><div class="row"><button class="ghost" onclick="closeMail()">Cancel</button><button onclick="sendMail()">Open email</button></div></div></div>
 <div id="ht_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="htl"><h2 id="htl">Take damage</h2><p id="hin" style="margin-top:0"></p><div class="lab">Which protection applies?</div><div class="row" id="hty"></div><div class="lab">How does it count this time?</div><div class="row" id="hhw"></div><label class="chk" style="margin:6px 0"><input type="checkbox" id="hvu" onchange="H.v=this.checked;hitRender()"> Vulnerable (take double damage)</label><p id="hres" class="res" style="font-size:18px"></p><div class="row"><button class="ghost" onclick="closeHit()">Cancel</button><button onclick="confirmHit()">Apply damage</button></div></div></div>
 <div id="sm_ov" class="ov" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="stl"><h2 id="stl"></h2><p class="note" id="stx" style="margin-top:0"></p><div class="row" id="sbtn"></div><div class="row"><button class="ghost" onclick="closeStrain()">Cancel</button></div></div></div>
@@ -124,7 +117,7 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 <section class="panel full"><h2>Contacts</h2><div id="contacts"></div><button class="ghost" style="margin-top:8px" onclick="S.contacts.push({n:'',loy:'',pow:'',i:'',b:'',nt:''});rk();save()">+ Add Contact</button></section>
 <section class="panel rollp"><h2>Roll a Check</h2>
 <div class="fields"><div class="field"><label for="ra">Attribute</label><select id="ra" data-k="roll.att"></select></div>
-<div class="field"><label for="rq">Quality</label><select id="rq" data-k="roll.q"></select></div><div class="field"><label for="rt">Talent</label><select id="rt" data-k="roll.t"></select></div>
+<div class="field"><label for="rf">Feature (adds its Rank)</label><select id="rf" data-k="roll.f"></select></div>
 <div class="field"><label for="rd">DN (or opponent’s total)</label><input id="rd" type="number" data-k="roll.dn"></div>
 <div class="field"><label for="rh">Help</label><input id="rh" type="number" min="0" data-k="roll.help"></div>
 <div class="field"><label for="rp">Problem</label><input id="rp" type="number" min="0" data-k="roll.prob"></div>
@@ -146,40 +139,43 @@ ul.log{padding-left:18px;margin:6px 0;font-size:13px;max-height:140px;overflow:a
 const $=id=>document.getElementById(id),DIE=[4,6,8,10,12],ATT=[["ath","Athleticism"],["res","Resilience"],["int","Intelligence"],["inf","Influence"]];
 const AL={Generalist:{r:[2,2,2,2],t:1,note:"Bonus: an additional Background Title."},Adventurer:{r:[3,2,2,1],t:1,note:"Bonus: an additional Background Title."},Specialist:{r:[3,3,1,0],q:3,note:"Bonus: +3 Quality points."},Prodigy:{r:[4,3,0,0],q:3,note:"Bonus: +3 Quality points."},Survivor:{r:[3,2,1,1],cap:3,note:"Bonus: +3 Injury Cap."}};
 const NEEDS=[["hun","Hungry","Fewer than 2 meals in a day (checked at Dawn); 3+ Phases without a drink (2 in extreme heat).","3 or more meals and enough to drink."],["tir","Tired","Rested fewer than 2 Phases (checked at Dawn); Fumble a Check that took lots of stamina.","Rested 4 Phases, or 2 if sheltered, safe and cozy."],["dis","Distressed","2 Phases under sustained pressure, duress, sorrow, fear or filth; Miss a Resilience Check against horror, despair, betrayal or deep disgust.","A Phase doing something that lifts your spirits: friends, celebrating, helping, meditating."]],QN=["Strength","Agility","Spirit","Vitality","Reason","Creativity","Perception","Connection","Appeal","Presence"],KEY="stormfarers-sheet-v3";
-const blank=()=>({name:"",player:"",races:[],lvl:0,xp:0,cal:10,alloc:"Generalist",r:{ath:2,res:2,int:2,inf:2},q:QN.map(n=>({n,r:0})),wake:"",titles:[{i:"",b:""}],classes:[],talents:[],contacts:[],collapsed:{},dmg:0,needs:{hun:0,tir:0,dis:0},circ:{hun:0,tir:0,dis:0},strain:{mud:false,ham:false,worn:false},kdf:false,dying:false,rec:"",eq:{mh:{n:"",dmg:"",prot:"",tr:""},oh:{n:"",dmg:"",prot:"",tr:""},ar:{n:"",dmg:"",prot:"",part:"",tr:""},sh:{n:"",dmg:"",prot:"",tr:""}},gn:"",inv:[{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""}],quick:0,slow:0,notes:"",log:[],last:"",roll:{att:"ath",q:"",t:"",dn:10,help:0,prob:0,untr:0,adv:false,dis:false}});
+const uid=()=>Math.random().toString(36).slice(2,9);
+const blank=()=>({name:"",player:"",lvl:0,xp:0,cal:10,alloc:"Generalist",r:{ath:2,res:2,int:2,inf:2},ft:[],wake:"",titles:[{i:"",b:""}],contacts:[],collapsed:{},dmg:0,needs:{hun:0,tir:0,dis:0},circ:{hun:0,tir:0,dis:0},strain:{mud:false,ham:false,worn:false},kdf:false,dying:false,rec:"",eq:{mh:{n:"",dmg:"",prot:"",tr:""},oh:{n:"",dmg:"",prot:"",tr:""},ar:{n:"",dmg:"",prot:"",part:"",tr:""},sh:{n:"",dmg:"",prot:"",tr:""}},gn:"",inv:[{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""},{n:"",q:"",t:""}],quick:0,slow:0,notes:"",log:[],last:"",roll:{att:"ath",f:"",dn:10,help:0,prob:0,untr:0,adv:false,dis:false}});
 let S=blank();try{const t=localStorage.getItem(KEY);if(t)S=Object.assign(blank(),JSON.parse(t))}catch(e){}
-function norm(){if(!Array.isArray(S.q))S.q=Object.entries(S.q).map(([n,r])=>({n,r}));
+function norm(){
  if(S.idn||S.bond||S.idn2||S.bond2){S.titles=[{i:S.idn||"",b:S.bond||""}];if(S.idn2||S.bond2)S.titles.push({i:S.idn2||"",b:S.bond2||""})}
- if(typeof S.features==="string"&&S.features)S.feats=[{n:"",t:S.features}];
- if(Array.isArray(S.feats)||S.cls){const f=(S.feats||[]).filter(x=>x.n||x.t);if(f.length||S.cls)S.classes=[{n:S.cls||"",f}]}
- delete S.feats;delete S.cls;
+ ["idn","bond","idn2","bond2","features"].forEach(k=>delete S[k]);
  if(S.eq&&S.eq.ar&&S.eq.ar.part==null)S.eq.ar.part="";
- if(typeof S.race==="string"){if(S.race)S.races=[{n:S.race,f:[]}];delete S.race}
- ["idn","bond","idn2","bond2","features"].forEach(k=>delete S[k])}
+ if(!Array.isArray(S.ft))S.ft=[];
+ const mk=(src,type,n,d,r)=>({id:uid(),src,type:type||"",n:n||"",d:d||"",r:+r||0});
+ if(S.q){const q=Array.isArray(S.q)?S.q:Object.entries(S.q).map(([n,r])=>({n,r}));q.filter(x=>x.n&&(x.r>0||!QN.includes(x.n))).forEach(x=>S.ft.push(mk("General","Quality",x.n,"",x.r)));delete S.q}
+ if(S.talents){S.talents.filter(x=>x.n).forEach(x=>S.ft.push(mk("General","Talent",x.n,"",x.r)));delete S.talents}
+ [["races","Race"],["classes","Class"]].forEach(([k,src])=>{if(S[k]){S[k].forEach(c=>{if(!c.f||!c.f.length)S.ft.push(mk(src,c.n,"","",0));else c.f.forEach(f=>S.ft.push(mk(src,c.n,f.n,f.t,0)))});delete S[k]}});
+ if(typeof S.race==="string"){if(S.race)S.ft.push(mk("Race",S.race,"","",0));delete S.race}
+ if(Array.isArray(S.feats)||S.cls){(S.feats||[]).filter(x=>x.n||x.t).forEach(x=>S.ft.push(mk("Class",S.cls||"",x.n,x.t,0)));if(S.cls&&!(S.feats||[]).length)S.ft.push(mk("Class",S.cls,"","",0));delete S.feats;delete S.cls}
+ S.ft.forEach(f=>{if(!f.id)f.id=uid()});
+ if(S.roll){if(S.roll.q||S.roll.t){const f=S.ft.find(x=>x.n===(S.roll.q||S.roll.t));S.roll.f=f?f.id:""}delete S.roll.q;delete S.roll.t;if(S.roll.f==null)S.roll.f=""}
+}
 norm();
 const gp=p=>p.split(".").reduce((o,k)=>o[k],S),sp=(p,v)=>{const k=p.split(".");let o=S;while(k.length>1)o=o[k.shift()];o[k[0]]=v};
 const d=n=>1+Math.floor(Math.random()*n),A=()=>AL[S.alloc]||AL.Generalist,esc=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
 let PREV=false,PL=[];const L=m=>{if(PREV)PL.push(m);S.log.unshift(m);S.log=S.log.slice(0,15)};
 const cap=()=>4+S.r.res+(A().cap||0),lost=()=>Math.min(5,Math.floor(S.dmg/cap())),part=()=>lost()>=5?0:S.dmg%cap();
-const cost=k=>k<=3?1:k<=5?2:3,spent=()=>S.q.reduce((a,q)=>{let s=0;for(let k=1;k<=q.r;k++)s+=cost(k);return a+s},0);
+const cost=k=>k<=3?1:k<=5?2:3,spent=()=>S.ft.filter(f=>f.src==="General"&&f.type==="Quality").reduce((a,f)=>{let s=0;for(let k=1;k<=f.r;k++)s+=cost(k);return a+s},0);
 const earned=()=>(A().q||0)+(S.lvl>=2?3*(Math.floor((S.lvl-2)/3)+1):0),need=()=>1+3*(S.lvl+1);
 const strainP=a=>{const m=S.strain.worn?2:1;return(a==="ath"||a==="res")?(S.strain.ham?m:0):(S.strain.mud?m:0)};
 let tmr;function save(){clearTimeout(tmr);tmr=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){$("saveStatus").textContent="Autosave is unavailable here. Export any character sheet you want to keep."}},200)}
 function change(){derive();save()}
-function sync(){if(PREV)return;document.querySelectorAll("[data-k]").forEach(el=>{const v=gp(el.dataset.k);if(el.type==="checkbox")el.checked=!!v;else el.value=v});rq();rta();rt();rr();rc();rk();ri();re();derive();acc();save()}
+function sync(){if(PREV)return;document.querySelectorAll("[data-k]").forEach(el=>{const v=gp(el.dataset.k);if(el.type==="checkbox")el.checked=!!v;else el.value=v});rt();rf();rk();ri();re();derive();acc();save()}
 function applyAlloc(){const r=A().r;if(r)ATT.forEach((a,i)=>S.r[a[0]]=r[i]);ATT.forEach(a=>$("r_"+a[0]).value=S.r[a[0]])}
-function rq(){$("quals").innerHTML=S.q.map((q,i)=>`<div class="qrow"><input value="${esc(q.n)}" placeholder="Quality" aria-label="Quality name" oninput="S.q[${i}].n=this.value;change()"><input type="number" min="0" max="6" value="${q.r}" aria-label="Rank" oninput="S.q[${i}].r=Math.max(0,Math.min(6,+this.value||0));change()"><button class="x" aria-label="Remove Quality" onclick="S.q.splice(${i},1);rq();change()">×</button></div>`).join("")}
 function ri(){$("inv").innerHTML=S.inv.map((x,i)=>`<tr><td><input value="${esc(x.n)}" placeholder="Item" oninput="S.inv[${i}].n=this.value;save()"></td><td><input class="q" value="${esc(x.q)}" placeholder="Qty" oninput="S.inv[${i}].q=this.value;save()"></td><td><input value="${esc(x.t)}" placeholder="Notes or traits" oninput="S.inv[${i}].t=this.value;save()"></td><td><button class="x" aria-label="Remove item" onclick="S.inv.splice(${i},1);ri();save()">×</button></td></tr>`).join("")}
 function rt(){$("titles").innerHTML=S.titles.map((t,i)=>`<div class="trow"><input value="${esc(t.i)}" placeholder="Identity (role, profession, livelihood)" aria-label="Title identity" oninput="S.titles[${i}].i=this.value;change()"><input value="${esc(t.b)}" placeholder="Bond (place, group, major event)" aria-label="Title bond" oninput="S.titles[${i}].b=this.value;change()"><button class="x" aria-label="Remove Title" onclick="S.titles.splice(${i},1);rt();change()">×</button></div>`).join("")}
-function rl(k,el,ph,fp,empty,fn){$(el).innerHTML=S[k].length?S[k].map((c,i)=>`<div class="frow"><div class="trow" style="grid-template-columns:1fr 30px"><input value="${esc(c.n)}" placeholder="${ph}" aria-label="${ph}" oninput="S.${k}[${i}].n=this.value;save()"><button class="x" aria-label="Remove ${ph}" onclick="ask('Remove this?','This also removes all of its features.','Remove',()=>{S.${k}.splice(${i},1);${fn}();save()})">×</button></div>${c.f.map((f,j)=>`<div class="frow" style="margin:6px 0 0"><div class="trow" style="grid-template-columns:1fr 30px"><input value="${esc(f.n)}" placeholder="${fp}" aria-label="Feature name" oninput="S.${k}[${i}].f[${j}].n=this.value;save()"><button class="x" aria-label="Remove feature" onclick="S.${k}[${i}].f.splice(${j},1);${fn}();save()">×</button></div><textarea placeholder="Effect, requirements" aria-label="Feature details" oninput="S.${k}[${i}].f[${j}].t=this.value;save()">${esc(f.t)}</textarea></div>`).join("")}<button class="ghost" style="margin-top:8px" onclick="S.${k}[${i}].f.push({n:'',t:''});${fn}();save()">+ Add Feature</button></div>`).join(""):`<p class="note">${empty}</p>`}
-function rc(){rl("classes","classes","Class name","Feature or talent name","No class yet. Add one when you reach level 1.","rc")}
-function rr(){rl("races","races","Race name","Racial feature name","No race yet. Add one, and add more for a hybrid.","rr")}
 function re(){const f=(k,t,fl)=>`<div class="eqr"><b>${t}</b>${fl.map(([x,p,w])=>`<input ${x==="prot"||x==="part"?'type="number" min="0" ':""}style="flex:${w}" value="${esc(S.eq[k][x])}" placeholder="${p}" aria-label="${t} ${p}" oninput="S.eq.${k}.${x}=this.value;save()">`).join("")}</div>`;
  $("eqb").innerHTML='<div class="lab">Weapons</div>'+f("mh","Main Hand",[["n","Weapon",3],["dmg","Damage die (e.g. d8)",2],["tr","Traits",4]])+f("oh","Off Hand",[["n","Weapon",3],["dmg","Damage die (e.g. d6)",2],["tr","Traits",4]])+'<div class="lab" style="margin-top:8px">Armor (Protection and Partial reduce damage 1:1 when you take damage)</div>'+f("ar","Armor",[["n","Armor",3],["prot","Protection",2],["part","Partial",2],["tr","Traits",3]])+'<div class="lab" style="margin-top:8px">Shield</div>'+f("sh","Shield",[["n","Shield",3],["tr","Notes (parry bonus once known)",6]])}
 function warnings(){const w=[],P=(s,m)=>w.push({s,m}),sum=Object.values(S.r).reduce((a,b)=>a+b,0);
  if(S.lvl===0){const want=A().r.slice().sort((x,y)=>y-x),cur=Object.values(S.r).sort((x,y)=>y-x);if(want.join()!==cur.join())P("Attributes",`${S.alloc} ratings must be ${want.join(", ")} in any order. Yours are ${cur.join(", ")}.`);const nt=S.titles.filter(t=>t.i||t.b).length,mt=A().t?2:1;if(nt>mt)P("Identity & Progression",`${S.alloc} starts with ${mt} Title${mt>1?"s":""}, but you have ${nt}. Extra Titles can come from class features later.`)}
  if(S.lvl>0&&A().r){const e=A().r.reduce((a,b)=>a+b,0)+Math.floor(S.lvl/5);if(sum!==e)P("Attributes",`Attribute ratings total ${sum}, but ${S.alloc} plus level bumps gives ${e}.`)}
- const left=earned()-spent();if(left<0)P("Qualities",`Qualities are overspent by ${-left}.`);else if(left>0)P("Qualities",`${left} Quality point(s) unspent. They can’t be saved for later levels.`);
+ const left=earned()-spent();if(left<0)P("Features",`Quality points are overspent by ${-left}.`);else if(left>0)P("Features",`${left} Quality point(s) unspent. They can’t be saved for later levels.`);
  {const n=S.titles.filter(t=>t.i&&t.b).length;if(A().t&&n<2)P("Identity & Progression",`${S.alloc} starts with an additional Background Title, so you need 2 Titles (${n} complete so far).`)}
  if(!A().t&&S.lvl>=2&&!S.titles.some(t=>t.i&&t.b))P("Identity & Progression","A Title (identity and bond) is required from level 2, with GL approval.");
  return w}
@@ -196,9 +192,8 @@ function derive(){
  $("anote").textContent=A().note;$("strainv").innerHTML=[["mud","Muddled"],["ham","Hampered"],["worn","Worn (doubles Problems)"]].map(([k,t])=>`<span class="pill ${S.strain[k]?"on":"off"}">${t}</span>`).join("");{const n=(+S.quick||0)-(+S.slow||0);$("qsn").textContent=n>0?`Net: Quickened ×${n}`:n<0?`Net: Slowed ×${-n}`:"Net: neither"}
  const w=warnings();$("warn").innerHTML=w.map(x=>`<div>• <b>${x.s}</b>: ${x.m}</div>`).join("");$("warn").style.display=w.length?"":"none";$("guide").style.display=S.lvl===0?"":"none";$("gnote").textContent=A().note;
  {const hs=new Set(w.map(x=>x.s));document.querySelectorAll("section.panel>h2").forEach(h=>{const f=hs.has(h.textContent.trim());h.classList.toggle("flag",f);h.title=f?"Needs attention":""})}
- const opts='<option value="">none</option>'+S.q.filter(q=>q.r>0&&q.n).map(q=>`<option>${esc(q.n)}</option>`).join("");
- if($("rq").dataset.o!==opts){$("rq").innerHTML=opts;$("rq").dataset.o=opts;$("rq").value=S.roll.q;if($("rq").value!==S.roll.q)S.roll.q=""}
- {const to='<option value="">none</option>'+S.talents.filter(q=>q.r>0&&q.n).map(q=>`<option>${esc(q.n)}</option>`).join("");if($("rt").dataset.o!==to){$("rt").innerHTML=to;$("rt").dataset.o=to;$("rt").value=S.roll.t;if($("rt").value!==S.roll.t)S.roll.t=""}}$("rnote").textContent=`Strain Problem on this Attribute: ${strainP(S.roll.att)}. Set DN to the opponent’s total for a Dispute.`;
+ {const fo='<option value="">none</option>'+S.ft.filter(f=>f.n&&f.r>0).map(f=>`<option value="${f.id}">${esc(f.n)} (${f.r})</option>`).join("");if($("rf").dataset.o!==fo){$("rf").innerHTML=fo;$("rf").dataset.o=fo;$("rf").value=S.roll.f;if($("rf").value!==S.roll.f)S.roll.f=""}}
+ $("rnote").textContent=`Strain Problem on this Attribute: ${strainP(S.roll.att)}. Set DN to the opponent’s total for a Dispute.`;
  $("log").innerHTML=S.log.map(m=>`<li>${esc(m)}</li>`).join("");$("rollOut").innerHTML=S.last}
 function addDmg(n){const b=lost();S.dmg=Math.max(0,Math.min(5*cap(),S.dmg+n));const a=lost();if(a>b)L(`Heart lost (${a} of 5). Morale check: keep going, or change the plan?`);if(S.dmg>=5*cap())L("Knocked Down. Roll 1d4 for Phases until you wake.");sync()}
 function healHearts(n){let Lh=lost(),p=part();while(n-->0){if(Lh>0)Lh--;else p=0}S.dmg=Lh*cap()+p;sync()}
@@ -217,41 +212,43 @@ function levelUp(){if(S.xp<need())return;S.xp-=need();S.lvl++;const l=S.lvl,t=[l
  L(`Level ${l}! To do: ${t.join("; ")}.`);sync()}
 function roll(){const r=S.roll;let net=+r.help-(+r.prob+strainP(r.att)+ +r.untr),adv=!!r.adv,dis=!!r.dis;
  if(net>3){net=3;adv=true}if(net<-3){net=-3;dis=true}if(adv&&dis)adv=dis=false;
- const ad=DIE[S.r[r.att]],qv=(S.q.find(q=>q.n===r.q)||{r:0}).r,tv=(S.talents.find(q=>q.n===r.t)||{r:0}).r,one=()=>{const x=d(S.cal),y=d(ad);return{x,y,t:x+y+qv+tv+net}};
+ const ad=DIE[S.r[r.att]],ff=S.ft.find(f=>f.id===r.f)||{r:0,n:""},qv=ff.r,one=()=>{const x=d(S.cal),y=d(ad);return{x,y,t:x+y+qv+net}};
  let a=one(),note="";if(adv||dis){const b=one(),useB=adv?b.t>a.t:b.t<a.t;note=`${adv?"Advantage":"Disadvantage"}: ${a.t} then ${b.t}, kept ${useB?b.t:a.t}. `;if(useB)a=b}
  const dn=+r.dn,res=(a.x===1&&a.y===1)||a.t<=2?"Fumble":a.t>=dn+4?"Triumph":a.t>=dn?"Hit":"Miss";
- S.last=`<div class="res ${res==="Miss"||res==="Fumble"?"warn":"good"}">${res}: ${a.t} vs DN ${dn}</div><div class="note">${note}d${S.cal} ${a.x} + d${ad} ${a.y}${qv?` + ${esc(r.q)} ${qv}`:""}${tv?` + ${esc(r.t)} ${tv}`:""}${net?` ${net>0?"+":""}${net} net Help/Problem`:""}</div>${res==="Triumph"?'<div class="note">In combat: gain Quickened.</div>':res==="Fumble"?'<div class="note">In combat: gain Slowed.</div>':""}`;
+ S.last=`<div class="res ${res==="Miss"||res==="Fumble"?"warn":"good"}">${res}: ${a.t} vs DN ${dn}</div><div class="note">${note}d${S.cal} ${a.x} + d${ad} ${a.y}${qv?` + ${esc(ff.n)} ${qv}`:""}${net?` ${net>0?"+":""}${net} net Help/Problem`:""}</div>${res==="Triumph"?'<div class="note">In combat: gain Quickened.</div>':res==="Fumble"?'<div class="note">In combat: gain Slowed.</div>':""}`;
  derive();save()}
 function wakeRoll(k){const a=d(4);S.wake=k?`Get Up roll: ${a}. Wait ${a} Phase(s) after waking before you Get Up safely.`:`Wake roll: ${a}. You wake in ${a} Phase(s).`;L(S.wake);sync()}
 function openDawn(){DS=null;DSN=false;["dm","dr"].forEach(i=>$(i).value="");$("dp").value=0;$("dc").checked=$("dl").checked=false;$("ds").value="0";$("dsw").style.display=(S.strain.mud||S.strain.ham)?"":"none";$("derr").textContent="";$("dstep1").hidden=false;$("dstep2").hidden=true;$("dm_ov").hidden=false;$("dm").focus()}
 function closeDawn(){$("dm_ov").hidden=true}
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDawn();closeStrain();closeHit();closeMail();closeTal()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDawn();closeStrain();closeHit();closeMail()}});
 function strainResult(p){const s=S.strain,nm={mud:"Muddled",ham:"Hampered"};if(!s[p])return "You gain "+nm[p]+".";if(!s.worn)return "You already have "+nm[p]+", so you become Worn.";const o=!s.mud?"mud":!s.ham?"ham":null;return o?"You are already Worn, so you gain "+nm[o]+" instead.":"You have every Strain, so you lose a Heart."}
 function openStrain(mode){const s=S.strain,nm={mud:"Muddled",ham:"Hampered",worn:"Worn"};let h="";
- if(mode==="gain"){$("stl").textContent="Gain Strain: which type?";$("stx").textContent="Muddled: Problem on Intelligence and Influence. Hampered: Problem on Athleticism and Resilience. If you already have the type you pick, the Strain escalates.";
-  h=["mud","ham"].map(p=>`<div style="width:100%"><button onclick="applyStrain('${p}')">${nm[p]}</button><div class="note" style="margin:3px 0 0">${strainResult(p)}</div></div>`).join("")}
- else{$("stl").textContent="Remove Strain";$("stx").textContent="Choose what to clear, for example after a successful Medicine Check.";
-  h=["mud","ham","worn"].filter(p=>s[p]).map(p=>`<button onclick="clearStrain('${p}')">${nm[p]}</button>`).join("")||'<p class="note">No Strain to remove.</p>'}
+ if(mode==="gain"){$("stl").textContent="Gain Strain";$("stx").textContent="Choose how many of each type you gain. Muddled: Problem on Intelligence and Influence. Hampered: Problem on Athleticism and Resilience. A type you already have escalates.";
+  h=["mud","ham"].map(p=>`<div style="width:100%;display:flex;gap:8px;align-items:center"><div style="flex:1"><b>${nm[p]}</b><div class="note" style="margin:2px 0 0">${strainResult(p)}</div></div><select id="sg_${p}" aria-label="${nm[p]} amount" style="width:auto"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select></div>`).join("")+`<button onclick="applyStrain()">Gain selected</button>`}
+ else{$("stl").textContent="Remove Strain";$("stx").textContent="Tick everything you want to clear, for example after a successful Medicine Check.";
+  h=["mud","ham","worn"].filter(p=>s[p]).map(p=>`<label class="chk" style="width:100%"><input type="checkbox" id="sc_${p}"> ${nm[p]}</label>`).join("")+(["mud","ham","worn"].some(p=>s[p])?`<button onclick="clearStrain()">Clear selected</button>`:'<p class="note">No Strain to remove.</p>')}
  $("sbtn").innerHTML=h;$("sm_ov").hidden=false}
+function applyStrain(){const n={mud:+$("sg_mud").value||0,ham:+$("sg_ham").value||0};closeStrain();["mud","ham"].forEach(p=>{for(let i=0;i<n[p];i++)gainStrain(p)})}
+function clearStrain(){const nm={mud:"Muddled",ham:"Hampered",worn:"Worn"},sel=["mud","ham","worn"].filter(p=>$("sc_"+p)&&$("sc_"+p).checked);closeStrain();if(!sel.length)return;sel.forEach(p=>S.strain[p]=false);L("Strain removed: "+sel.map(p=>nm[p]).join(", ")+".");sync()}
 let CB=null;
 function ask(t,m,yes,fn){$("stl").textContent=t;$("stx").textContent=m;CB=fn;$("sbtn").innerHTML=`<button onclick="doAsk()">${yes}</button>`;$("sm_ov").hidden=false}
 function doAsk(){const f=CB;CB=null;closeStrain();if(f)f()}
 function closeStrain(){$("sm_ov").hidden=true}
-function applyStrain(p){closeStrain();gainStrain(p)}
-function clearStrain(p){S.strain[p]=false;L("Strain removed: "+{mud:"Muddled",ham:"Hampered",worn:"Worn"}[p]);closeStrain();sync()}
-const NM={hun:"Hungry",tir:"Tired",dis:"Distressed"};let MC=false,CC=false;
-function openNeed(mode,from,keep){const o=S.needs,cr=k=>S.circ[k]||0;let h="";if(mode==="mark")MC=false;if(mode==="clear"&&!keep)CC=false;
- if(mode==="mark"){$("stl").textContent="Mark a Need: which type?";$("stx").textContent="Needs don\u2019t penalize rolls; they warn you before Strain. A full Need spills into another Need, then into Strain.";
-  h=`<label class="chk" style="width:100%"><input type="checkbox" onchange="MC=this.checked"> Unrecoverable: circle the box so it can\u2019t be cleared normally. Note the fix in Recovery / Medical Notes.</label>`+Object.keys(NM).map(k=>`<div style="width:100%"><button onclick="pickNeed('${k}')">${NM[k]}</button><div class="note" style="margin:3px 0 0">${o[k]<2?`Marks box ${o[k]+1} of 2.`:"Already full. You will choose another Need next."}</div></div>`).join("")}
- else if(mode==="cascade"){$("stl").textContent=NM[from]+" is full: mark which Need instead?";$("stx").textContent=MC?"Choose one that has room. The box will be circled as unrecoverable.":"Choose one that has room.";
-  h=Object.keys(NM).filter(k=>k!==from&&o[k]<2).map(k=>`<button onclick="markNeed('${k}')">${NM[k]}</button>`).join("")}
- else{$("stl").textContent="Clear a Need";$("stx").textContent="Clears one box at a time. Circled boxes stay unless you tick the option below.";
-  const bt=Object.keys(NM).map(k=>{let b="";if(o[k]-cr(k)>0)b+=`<button onclick="clearNeed('${k}')">${NM[k]} (${o[k]-cr(k)} clearable)</button>`;if(CC&&cr(k)>0)b+=`<button onclick="clearNeed('${k}',1)">${NM[k]}: unrecoverable box</button>`;return b}).join("");
-  h=`<label class="chk" style="width:100%"><input type="checkbox" ${CC?"checked":""} onchange="CC=this.checked;openNeed('clear',null,true)"> Allow clearing an unrecoverable (circled) box</label>`+(bt||'<p class="note">Nothing can be cleared here.</p>')}
+const NM={hun:"Hungry",tir:"Tired",dis:"Distressed"};let MC=false,CC=false,NSEL={};
+const nsel=()=>{const r={};document.querySelectorAll("#sbtn select[data-nk]").forEach(e=>r[e.dataset.nk]=+e.value||0);return r};
+const nopts=(max,cur)=>[...Array(max+1).keys()].map(i=>`<option value="${i}"${i===cur?" selected":""}>${i}</option>`).join("");
+function openNeed(mode,keep){const o=S.needs,cr=k=>S.circ[k]||0;let h="";if(!keep){MC=false;CC=false;NSEL={}}
+ if(mode==="mark"){$("stl").textContent="Mark Needs";$("stx").textContent="Choose how many boxes to mark on each Need. Needs don\u2019t penalize rolls; they warn you before Strain. A full Need can\u2019t take more, so mark a different Need of your choice instead.";
+  const room=k=>2-o[k],any=Object.keys(NM).some(k=>room(k)>0);
+  h=`<label class="chk" style="width:100%"><input type="checkbox" ${MC?"checked":""} onchange="MC=this.checked"> Unrecoverable: circle the marked boxes so they can\u2019t be cleared normally. Note the fix in Recovery / Medical Notes.</label>`+Object.keys(NM).map(k=>`<div style="width:100%;display:flex;gap:8px;align-items:center"><div style="flex:1"><b>${NM[k]}</b> <span class="note">${o[k]} of 2 marked${room(k)?"":" (full)"}</span></div>${room(k)?`<select data-nk="${k}" aria-label="${NM[k]} boxes to mark" style="width:auto">${nopts(room(k),NSEL[k]||0)}</select>`:""}</div>`).join("")+(any?`<button onclick="applyNeeds('mark')">Mark selected</button>`:`<p class="note">All Needs are full. Further marks become Strain.</p><button onclick="closeStrain();L('All Needs full: gain Strain.');openStrain('gain')">Gain Strain</button>`)}
+ else{$("stl").textContent="Clear Needs";$("stx").textContent="Choose how many boxes to clear on each Need. Circled boxes stay unless you tick the option below.";
+  const rows=Object.keys(NM).map(k=>{let b="";const n=o[k]-cr(k);if(n>0)b+=`<div style="width:100%;display:flex;gap:8px;align-items:center"><b style="flex:1">${NM[k]} <span class="note">(${n} clearable)</span></b><select data-nk="${k}" aria-label="${NM[k]} boxes to clear" style="width:auto">${nopts(n,NSEL[k]||0)}</select></div>`;if(CC&&cr(k)>0)b+=`<div style="width:100%;display:flex;gap:8px;align-items:center"><b style="flex:1">${NM[k]} <span class="note">(${cr(k)} unrecoverable)</span></b><select data-nk="${k}_c" aria-label="${NM[k]} unrecoverable boxes to clear" style="width:auto">${nopts(cr(k),NSEL[k+"_c"]||0)}</select></div>`;return b}).join("");
+  h=`<label class="chk" style="width:100%"><input type="checkbox" ${CC?"checked":""} onchange="NSEL=nsel();CC=this.checked;openNeed('clear',true)"> Allow clearing unrecoverable (circled) boxes</label>`+(rows?rows+`<button onclick="applyNeeds('clear')">Clear selected</button>`:'<p class="note">Nothing can be cleared here.</p>')}
  $("sbtn").innerHTML=h;$("sm_ov").hidden=false}
-function pickNeed(k){const o=S.needs;if(o[k]<2){markNeed(k);return}if(Object.keys(NM).some(x=>x!==k&&o[x]<2))openNeed("cascade",k);else{MC=false;closeStrain();L("All Needs full: gain Strain.");openStrain("gain")}}
-function markNeed(k){S.needs[k]++;if(MC)S.circ[k]=(S.circ[k]||0)+1;L(NM[k]+(MC?" marked as unrecoverable":" marked")+" ("+S.needs[k]+" of 2).");MC=false;closeStrain();sync()}
-function clearNeed(k,c){S.needs[k]--;if(c)S.circ[k]=Math.max(0,(S.circ[k]||0)-1);L(NM[k]+(c?" unrecoverable box cleared (":" cleared (")+S.needs[k]+" of 2).");closeStrain();sync()}
+function applyNeeds(mode){const v=nsel(),parts=[];closeStrain();
+ Object.keys(NM).forEach(k=>{if(mode==="mark"){const n=v[k]||0;if(n>0){S.needs[k]=Math.min(2,S.needs[k]+n);if(MC)S.circ[k]=(S.circ[k]||0)+n;parts.push(NM[k]+" +"+n+(MC?" (unrecoverable)":""))}}
+  else{const n=v[k]||0,c=v[k+"_c"]||0;if(n+c>0){S.needs[k]=Math.max(0,S.needs[k]-n-c);S.circ[k]=Math.max(0,(S.circ[k]||0)-c);parts.push(NM[k]+" -"+(n+c))}}});
+ MC=false;if(parts.length){L((mode==="mark"?"Needs marked: ":"Needs cleared: ")+parts.join(", ")+".");sync()}}
 function previewDawn(){const bak=JSON.stringify(S);PREV=true;PL=[];let out;try{dawn();out={a:JSON.parse(JSON.stringify(S)),b:JSON.parse(bak),l:PL.slice()}}finally{PREV=false;S=JSON.parse(bak)}return out}
 function reviewDawn(){if($("dm").value===""||$("dr").value===""){$("derr").textContent="Enter the meals eaten and Phases rested first.";return}
  DSN=false;const {a,b,l}=previewDawn(),c=cap(),nm={hun:"Hungry",tir:"Tired",dis:"Distressed"},st=s=>[s.mud&&"Muddled",s.ham&&"Hampered",s.worn&&"Worn"].filter(Boolean).join(", ")||"none",rows=[];
@@ -276,23 +273,15 @@ function closeHit(){$("ht_ov").hidden=true}
 function confirmHit(){const c=hitCalc();closeHit();L(`Hit${H.v?" (Vulnerable, doubled)":""}: ${c.inc} incoming, ${c.eff} absorbed, ${c.dmg} taken.`);addDmg(c.dmg)}
 const TAL=[["Social",[["Perform","entertain, distract, deceive, blend"],["Network","find contacts, establish rapport, meet-ups"],["Lead","compel, teach, rally"],["Invite","persuade, entice, pacify"],["Negotiate",""]]],["Physical",[["Athletics","running, jumping, climbing, swimming"],["Acrobatics","swinging, tumbling, flexibility"],["Hauling","lift, drag, carry"],["Unarmed Melee","grapple, brawl"],["Armed Melee","polearms, small arms, chain/rope, swords, axes, bludgeons"],["Ranged","throw, shoot"]]],["Mental",[["Know","research, trivia, specialty topics"],["Search","actively looking for something; a closely related Talent may be rolled with Perception instead"],["Assess","strategy/security, deception, money value, many others"]]],["Natural",[["Camp","shelter, rope, fire, cook"],["Navigate","terrain or region"],["Handling","ride, tame, train"],["Hunt","identify/track, traps, by type"],["Medicine","by area/zone, or by ailment"]]],["Mechanical",[["Vehicle","interstellar, flying, sea, land, massive"],["Computer","by service or activity"],["Machine","by type or purpose"],["Craft","by type of craftsmanship"]]],["Cunning",[["Sleight of Hand","pilfering, games and tricks"],["Stealth","hide, move silently"],["Burglary","lockpicking, alarms, alternative entries/exits"]]]];
 const tinfo=n=>{const b=String(n).split("(")[0].trim().toLowerCase();for(const [c,l] of TAL)for(const [t,e] of l)if(t.toLowerCase()===b)return c+(e?": "+e:"");return ""};
-function rta(){$("talents").innerHTML=S.talents.length?S.talents.map((q,i)=>`<div style="margin-bottom:8px"><div class="qrow" style="margin-bottom:0"><input value="${esc(q.n)}" placeholder="Talent" aria-label="Talent name" oninput="S.talents[${i}].n=this.value;change()"><input type="number" min="0" value="${q.r}" aria-label="Talent value" oninput="S.talents[${i}].r=Math.max(0,+this.value||0);change()"><button class="x" aria-label="Remove Talent" onclick="S.talents.splice(${i},1);rta();change()">×</button></div>${tinfo(q.n)?`<div class="note" style="margin:2px 0 0">${esc(tinfo(q.n))}</div>`:""}</div>`).join(""):'<p class="note">No Talents yet. Talents come from Class features.</p>'}
-function openTal(){$("tlist").innerHTML=TAL.map(([c,l])=>`<div class="lab" style="margin-top:10px">${c}</div>`+l.map(([t,e])=>`<div style="margin:3px 0"><button class="ghost" onclick="addTal('${t}')">${t}</button> <span class="note">${esc(e)}</span></div>`).join("")).join("");$("tmsg").textContent="";$("tcu").value="";$("tl_ov").hidden=false}
-function closeTal(){$("tl_ov").hidden=true}
-function addTal(n){n=String(n||"").trim();if(!n)return;S.talents.push({n,r:1});rta();change();$("tmsg").textContent="Added "+n+".";$("tcu").value=""}
 function rk(){$("contacts").innerHTML=S.contacts.length?S.contacts.map((c,i)=>`<div class="frow"><div class="trow" style="grid-template-columns:2fr 1fr 1fr 30px"><input value="${esc(c.n)}" placeholder="Name" aria-label="Contact name" oninput="S.contacts[${i}].n=this.value;save()"><input value="${esc(c.loy)}" placeholder="Loyalty" aria-label="Loyalty" oninput="S.contacts[${i}].loy=this.value;save()"><input value="${esc(c.pow)}" placeholder="Power" aria-label="Power" oninput="S.contacts[${i}].pow=this.value;save()"><button class="x" aria-label="Remove contact" onclick="ask('Remove this contact?','Their details will be deleted.','Remove',()=>{S.contacts.splice(${i},1);rk();save()})">×</button></div><div class="trow" style="grid-template-columns:1fr 1fr"><input value="${esc(c.i)}" placeholder="Title identity" aria-label="Contact Title identity" oninput="S.contacts[${i}].i=this.value;save()"><input value="${esc(c.b)}" placeholder="Title bond" aria-label="Contact Title bond" oninput="S.contacts[${i}].b=this.value;save()"></div><textarea placeholder="Notes" aria-label="Contact notes" oninput="S.contacts[${i}].nt=this.value;save()">${esc(c.nt)}</textarea></div>`).join(""):'<p class="note">No contacts yet.</p>'}
 function acc(){document.querySelectorAll("section.panel").forEach(sec=>{const h=sec.querySelector("h2"),w=sec.querySelector(".acc");if(!h||!w)return;const c=!!S.collapsed[h.textContent.trim()];w.hidden=c;h.setAttribute("aria-expanded",String(!c))})}
 function exportCode(){return JSON.stringify(Object.assign({},S,{log:[],last:"",collapsed:{},wake:""}))}
 function exportJ(){$("iot").value=exportCode();openIO()}
 function sheetText(){const o=[],H=t=>o.push("",t,"-".repeat(t.length)),B=t=>o.push(t),L1=t=>o.push("- "+t),L2=t=>String(t).split("\n").forEach(x=>o.push("    "+x)),c=cap(),st=S.strain,e=S.eq;
- const feats=(arr,none)=>arr.length?arr.forEach(r=>{L1(r.n||"(unnamed)");r.f.forEach(f=>L2((f.n||"Feature")+(f.t?": "+f.t:"")))}):B(none);
  H("Identity & Progression");B("Hero Name: "+(S.name||"-"));B("Player: "+(S.player||"-"));B("Level: "+S.lvl);B("Current XP: "+S.xp);
- B("");B("Race(s) & Racial Features:");feats(S.races,"none");
  B("");B("Background Titles:");const ts=S.titles.filter(t=>t.i||t.b);ts.length?ts.forEach(t=>L1((t.i+" "+t.b).trim())):B("none");
  H("Attributes");B("Caliber Die: d"+S.cal);B("Starting Allocation: "+S.alloc);ATT.forEach(a=>L1(a[1]+": rating "+S.r[a[0]]+", d"+DIE[S.r[a[0]]]+", passive "+DIE[S.r[a[0]]]));B("Injury Cap: "+c);
- H("Qualities");const qs=S.q.filter(q=>q.n);qs.length?qs.forEach(q=>L1(q.n+": "+q.r)):B("none");
- H("Classes & Features");feats(S.classes,"none");
- H("Talents");const tl=S.talents.filter(q=>q.n);tl.length?tl.forEach(q=>L1(q.n+": "+q.r)):B("none");
+ H("Features");const fl=S.ft.filter(f=>f.n||f.type||f.d);fl.length?fl.forEach(f=>{L1("["+f.src+(f.type?" / "+f.type:"")+"] "+(f.n||"(unnamed)")+(f.r>0?" (Rank "+f.r+")":""));if(f.d)L2(f.d)}):B("none");
  H("Well-being");B("Needs:");NEEDS.forEach(n=>L1(n[1]+": "+S.needs[n[0]]+" of 2"+(S.circ[n[0]]?" ("+S.circ[n[0]]+" unrecoverable)":"")));
  B("Strain: "+([st.mud&&"Muddled",st.ham&&"Hampered",st.worn&&"Worn"].filter(Boolean).join(", ")||"none"));B("Knocked Down: "+(S.kdf?"yes":"no")+" | Dying: "+(S.dying?"yes":"no"));if(S.rec){B("Recovery / Medical Notes:");L2(S.rec)}
  H("Combat");B("Hearts: "+lost()+" of 5 lost"+(part()?", one damaged "+part()+"/"+c:"")+" (total damage "+S.dmg+")");B("Quickened: "+(S.quick||0)+" | Slowed: "+(S.slow||0));
@@ -309,13 +298,28 @@ let SECS=[],NC=0;
 const ncols=()=>Math.max(1,Math.min(3,Math.floor((document.querySelector(".grid").clientWidth+16)/436)));
 function layout(n){const g=document.querySelector(".grid"),a=document.activeElement,y=window.scrollY;document.body.style.minHeight=document.documentElement.scrollHeight+"px";NC=n||ncols();
  SECS.forEach(e=>g.appendChild(e));g.querySelectorAll(".band").forEach(b=>b.remove());
- let band=null,cols=[];
- SECS.forEach(e=>{e.classList.toggle("wide2",!!e.dataset.wide&&NC>=2);if(e.classList.contains("full")||e.dataset.wide||NC===1){band=null;g.appendChild(e);return}
-  if(!band){band=document.createElement("div");band.className="band";cols=[];for(let i=0;i<NC;i++){const c=document.createElement("div");c.className="col";band.appendChild(c);cols.push(c)}g.appendChild(band)}
-  let m=cols[0];cols.forEach(c=>{if(c.offsetHeight<m.offsetHeight)m=c});m.appendChild(e)});
- if(a&&a!==document.body&&a.isConnected){try{a.focus({preventScroll:true})}catch(x){}}document.body.style.minHeight="";window.scrollTo(0,y)}
+ SECS.forEach(e=>e.classList.toggle("wide2",!!e.dataset.wide&&NC>=2));
+ const full=e=>e.classList.contains("full")||!!e.dataset.wide||NC===1;
+ let i=0;
+ while(i<SECS.length){const e=SECS[i];if(full(e)){g.appendChild(e);i++;continue}
+  let j=i;while(j<SECS.length&&!full(SECS[j]))j++;
+  const grp=SECS.slice(i,j),nc=Math.min(NC,grp.length),band=document.createElement("div"),cols=[];band.className="band";
+  for(let k=0;k<nc;k++){const c=document.createElement("div");c.className="col";band.appendChild(c);cols.push(c)}
+  g.appendChild(band);
+  grp.forEach(x=>{let m=cols[0];cols.forEach(c=>{if(c.offsetHeight<m.offsetHeight)m=c});m.appendChild(x)});i=j}
+ const fe=$("feats");if(fe)fe.style.setProperty("--fc",NC>=2?NC:1);
+ if(a&&a!==document.body&&a.isConnected){try{a.focus({preventScroll:true})}catch(x){}}
+ document.body.style.minHeight="";window.scrollTo(0,y)}
 function buildJump(){const sel=$("jsel");SECS.forEach((e,i)=>{const o=document.createElement("option");o.value=i;o.textContent=e.tagName==="SECTION"?e.querySelector("h2").textContent.trim():"Export / Import";sel.appendChild(o)})}
 function jumpTo(i){if(i==="")return;const e=SECS[+i];if(e.tagName==="DETAILS")e.open=true;else{const k=e.querySelector("h2").textContent.trim();if(S.collapsed[k]){S.collapsed[k]=false;acc();save();layout()}}e.scrollIntoView({behavior:"smooth",block:"start"});$("jsel").value=""}
+const GEN=["Quality","Talent","Other"];
+function addFeat(){S.ft.push({id:uid(),src:"General",type:"Quality",n:"",d:"",r:0});rf();change()}
+function setSrc(i,v){const f=S.ft[i];f.src=v;if(v==="General"&&!GEN.includes(f.type))f.type="Quality";if(v!=="General"&&GEN.includes(f.type))f.type="";rf();change()}
+function rf(){$("feats").innerHTML=S.ft.length?S.ft.map((f,i)=>{
+ const typ=f.src==="General"?`<select aria-label="Type" onchange="S.ft[${i}].type=this.value;rf();change()">${GEN.map(t=>`<option${f.type===t?" selected":""}>${t}</option>`).join("")}</select>`:`<input value="${esc(f.type)}" placeholder="${f.src==="Race"?"Race":f.src==="Class"?"Class":"Type"}" aria-label="Type" oninput="S.ft[${i}].type=this.value;save()">`;
+ const dl=f.src==="General"&&f.type==="Quality"?"dl_q":f.src==="General"&&f.type==="Talent"?"dl_t":"";
+ const info=f.src==="General"&&f.type==="Talent"&&tinfo(f.n)?`<div class="note" style="margin:2px 0 0">${esc(tinfo(f.n))}</div>`:"";
+ return `<div class="frow"><div class="fc2"><div><div class="lab">Source</div><select aria-label="Source" onchange="setSrc(${i},this.value)">${["Race","Class","General","Custom"].map(t=>`<option${f.src===t?" selected":""}>${t}</option>`).join("")}</select></div><div><div class="lab">Type</div>${typ}</div></div><div style="margin-top:6px"><div class="lab">Name</div><input value="${esc(f.n)}" ${dl?`list="${dl}" `:""}placeholder="Feature name" aria-label="Feature name" oninput="S.ft[${i}].n=this.value;change()">${info}</div><div style="margin-top:6px"><div class="lab">Description</div><textarea placeholder="Effect, requirements" aria-label="Description" oninput="S.ft[${i}].d=this.value;save()">${esc(f.d)}</textarea></div><div class="row" style="margin-bottom:0"><div><div class="lab">Rank</div><input type="number" min="0" value="${f.r}" aria-label="Rank" style="width:80px" oninput="S.ft[${i}].r=Math.max(0,+this.value||0);change()"></div><button class="ghost" style="margin-left:auto" onclick="ask('Remove this feature?','It will be deleted from the list.','Remove',()=>{S.ft.splice(${i},1);rf();change()})">Remove</button></div></div>`}).join(""):'<p class="note">No features yet. Add race and class features, Qualities and Talents here.</p>'}
 function openIO(){$("io").open=true;$("io").scrollIntoView()}
 function importJ(){try{S=Object.assign(blank(),JSON.parse($("iot").value));norm();sync()}catch(e){ask("Import failed","That text isn’t a valid character export.","OK",null)}}
 function clearAll(){ask("Start a new hero?","This clears the sheet. Export first if you want to keep this one.","Start new hero",()=>{S=blank();sync()})}
@@ -323,6 +327,7 @@ $("attrs").innerHTML=ATT.map(a=>`<tr><td>${a[1]}</td><td><input id="r_${a[0]}" t
 $("ra").innerHTML=ATT.map(a=>`<option value="${a[0]}">${a[1]}</option>`).join("");
 document.querySelectorAll("[data-k]").forEach(el=>el.addEventListener("input",()=>{const k=el.dataset.k;let v=el.type==="checkbox"?el.checked:(el.type==="number"||el.dataset.n)?+el.value:el.value;sp(k,v);if(k==="alloc")applyAlloc();change()}));
 document.querySelectorAll("section.panel").forEach(sec=>{const h=sec.querySelector("h2"),w=document.createElement("div");w.className="acc";while(h.nextSibling)w.appendChild(h.nextSibling);sec.appendChild(w);h.tabIndex=0;h.setAttribute("role","button");const t=()=>{const top=h.getBoundingClientRect().top;S.collapsed[h.textContent.trim()]=!w.hidden;acc();save();layout();const d=h.getBoundingClientRect().top-top;if(Math.abs(d)>1){window.scrollBy(0,d);if(Math.abs(h.getBoundingClientRect().top-top)>1)h.scrollIntoView({block:"nearest"})}};h.onclick=t;h.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}}});
+$("dl_q").innerHTML=QN.map(n=>`<option value="${n}">`).join("");$("dl_t").innerHTML=TAL.flatMap(([c,l])=>l.map(([t])=>`<option value="${t}">`)).join("");
 sync();
 document.querySelectorAll(".grid>.ov").forEach(o=>document.body.appendChild(o));
 SECS=[...document.querySelector(".grid").children];layout();buildJump();
